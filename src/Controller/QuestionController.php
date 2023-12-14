@@ -11,9 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class QuestionController extends AbstractController
 {
-    /**
-     * @Route("/question/new", name="question_new", methods={"GET", "POST"})
-     */
+    #[Route('/question/new', name: 'question_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $question = new Question();
