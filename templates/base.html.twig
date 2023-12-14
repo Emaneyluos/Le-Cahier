@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     {% endblock %}
     {% block javascripts %}
+{% block importmap %}{{ importmap('app') }}{% endblock %}
         {# Any global JavaScript files #}
     {% endblock %}
 </head>

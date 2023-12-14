@@ -11,12 +11,10 @@
 
     {# Render each form field individually. For example: #}
     {{ form_row(form.dateValidite) }}
-    {{ form_row(form.Signalement) }}
     {{ form_row(form.classe) }}
     {{ form_row(form.professeur) }}
     {{ form_row(form.question) }}
     {{ form_row(form.reponse) }}
-    {{ form_row(form.visible) }}
     {# ... Add other fields as necessary #}
 
     {# Submit button #}
@@ -25,5 +23,5 @@
     {{ form_end(form) }}
 
     {# Optionally, add a link to go back to the list of questions #}
-    <a href="{{ path('question_index') }}">Back to the list</a>
+    <a href="{{ path('app_home') }}">Back to the list</a>
 {% endblock %}
