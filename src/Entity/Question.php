@@ -17,7 +17,7 @@ class Question
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $dateValiditee = null;
+    private ?\DateTimeInterface $dateValidite = null;
 
     #[ORM\Column]
     private ?bool $Signalement = null;
@@ -60,14 +60,14 @@ class Question
         return $this->id;
     }
 
-    public function getDateValiditee(): ?\DateTimeInterface
+    public function getDateValidite(): ?\DateTimeInterface
     {
-        return $this->dateValiditee;
+        return $this->dateValidite;
     }
 
-    public function setDateValiditee(?\DateTimeInterface $dateValiditee): static
+    public function setDateValidite(?\DateTimeInterface $dateValidite): static
     {
-        $this->dateValiditee = $dateValiditee;
+        $this->dateValidite = $dateValidite;
 
         return $this;
     }
