@@ -1,0 +1,29 @@
+{# templates/question/new.html.twig #}
+
+{% extends 'base.html.twig' %} {# Extend your base layout #}
+
+{% block title %}New Question{% endblock %}
+
+{% block body %}
+    <h1>Create a New Question</h1>
+
+    {{ form_start(form) }}
+
+    {# Render each form field individually. For example: #}
+    {{ form_row(form.dateValidite) }}
+    {{ form_row(form.Signalement) }}
+    {{ form_row(form.classe) }}
+    {{ form_row(form.professeur) }}
+    {{ form_row(form.question) }}
+    {{ form_row(form.reponse) }}
+    {{ form_row(form.visible) }}
+    {# ... Add other fields as necessary #}
+
+    {# Submit button #}
+    <button class="btn btn-primary">Submit</button>
+
+    {{ form_end(form) }}
+
+    {# Optionally, add a link to go back to the list of questions #}
+    <a href="{{ path('question_index') }}">Back to the list</a>
+{% endblock %}

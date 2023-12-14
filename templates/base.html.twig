@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {# Link to your main stylesheet #}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+        {# Any global JavaScript files #}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        {# Your site's header content, like a navigation bar #}
+        <nav>
+            {# Navigation items #}
+        </nav>
+    </header>
+
+    <main>
+        {% block body %}
+        {# Main content will be rendered here #}
+        {% endblock %}
+    </main>
+
+    <footer>
+        {# Your site's footer content #}
+    </footer>
+
+    {% block additional_scripts %}
+    {# Additional scripts can be added by child templates #}
+    {% endblock %}
+</body>
+</html>
