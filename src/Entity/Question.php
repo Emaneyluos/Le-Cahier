@@ -47,6 +47,9 @@ class Question
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $creerLe = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $modifieLe = null;
+
     public function __construct()
     {
         $this->dateReponses = new ArrayCollection();
@@ -191,6 +194,18 @@ class Question
     public function setCreerLe(\DateTimeInterface $creerLe): static
     {
         $this->creerLe = $creerLe;
+
+        return $this;
+    }
+
+    public function getModifieLe(): ?\DateTimeInterface
+    {
+        return $this->modifieLe;
+    }
+
+    public function setModifieLe(\DateTimeInterface $modifieLe): static
+    {
+        $this->modifieLe = $modifieLe;
 
         return $this;
     }
