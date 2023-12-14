@@ -44,6 +44,9 @@ class Question
     #[ORM\ManyToOne(inversedBy: 'questionsSupprimes')]
     private ?Professeur $supprimerPar = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $creerLe = null;
+
     public function __construct()
     {
         $this->dateReponses = new ArrayCollection();
@@ -176,6 +179,18 @@ class Question
     public function setSupprimerPar(?Professeur $supprimerPar): static
     {
         $this->supprimerPar = $supprimerPar;
+
+        return $this;
+    }
+
+    public function getCreerLe(): ?\DateTimeInterface
+    {
+        return $this->creerLe;
+    }
+
+    public function setCreerLe(\DateTimeInterface $creerLe): static
+    {
+        $this->creerLe = $creerLe;
 
         return $this;
     }
