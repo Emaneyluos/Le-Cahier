@@ -50,6 +50,10 @@ class Question
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $modifieLe = null;
 
+    #[ORM\ManyToOne(inversedBy: 'questions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Matiere $matiere = null;
+
     public function __construct()
     {
         $this->dateReponses = new ArrayCollection();
@@ -206,6 +210,18 @@ class Question
     public function setModifieLe(\DateTimeInterface $modifieLe): static
     {
         $this->modifieLe = $modifieLe;
+
+        return $this;
+    }
+
+    public function getMatiere(): ?Matiere
+    {
+        return $this->matiere;
+    }
+
+    public function setMatiere(?Matiere $matiere): static
+    {
+        $this->matiere = $matiere;
 
         return $this;
     }

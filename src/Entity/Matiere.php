@@ -24,10 +24,14 @@ class Matiere
     #[ORM\OneToMany(mappedBy: 'matiere', targetEntity: Professeur::class)]
     private Collection $professeur;
 
+    #[ORM\OneToMany(mappedBy: 'matiere', targetEntity: Question::class, orphanRemoval: true)]
+    private Collection $questions;
+
     public function __construct()
     {
         $this->classe = new ArrayCollection();
         $this->professeur = new ArrayCollection();
+        $this->questions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,6 +99,36 @@ class Matiere
             // set the owning side to null (unless already changed)
             if ($professeur->getMatiere() === $this) {
                 $professeur->setMatiere(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Question>
+     */
+    public function getQuestions(): Collection
+    {
+        return $this->questions;
+    }
+
+    public function addQuestion(Question $question): static
+    {
+        if (!$this->questions->contains($question)) {
+            $this->questions->add($question);
+            $question->setMatiere($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestion(Question $question): static
+    {
+        if ($this->questions->removeElement($question)) {
+            // set the owning side to null (unless already changed)
+            if ($question->getMatiere() === $this) {
+                $question->setMatiere(null);
             }
         }
 

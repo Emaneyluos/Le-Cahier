@@ -24,6 +24,10 @@ class Classe
     #[ORM\ManyToMany(targetEntity: Matiere::class, mappedBy: 'classe')]
     private Collection $matieres;
 
+    #[ORM\ManyToOne(inversedBy: 'classes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Niveau $niveau = null;
+
     public function __construct()
     {
         $this->question = new ArrayCollection();
@@ -100,6 +104,18 @@ class Classe
         if ($this->matieres->removeElement($matiere)) {
             $matiere->removeClasse($this);
         }
+
+        return $this;
+    }
+
+    public function getNiveau(): ?Niveau
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau(?Niveau $niveau): static
+    {
+        $this->niveau = $niveau;
 
         return $this;
     }
