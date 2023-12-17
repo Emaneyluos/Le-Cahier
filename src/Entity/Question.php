@@ -47,7 +47,7 @@ class Question
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $creerLe = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $modifieLe = null;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
