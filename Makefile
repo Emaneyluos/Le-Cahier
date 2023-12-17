@@ -1,5 +1,8 @@
+DOCKER = docker
+
+DOCKER_EXEC = $(DOCKER) exec -it
 # Executables (local)
-DOCKER_COMP = docker compose
+DOCKER_COMP = $(DOCKER) compose
 
 # Docker containers
 PHP_CONT = $(DOCKER_COMP) exec php
@@ -51,3 +54,8 @@ sf: ## List all Symfony commands or pass the parameter "c=" to run a given comma
 
 cc: c=c:c ## Clear the cache
 cc: sf
+
+## —— Database 💾 ———————————————————————————————————————————————————————————————
+db: ## Access to the CLI of the database
+	@$(DOCKER_EXEC) le-cahier-database-1 psql -U app -d app
+
