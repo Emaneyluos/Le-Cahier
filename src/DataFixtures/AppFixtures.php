@@ -132,7 +132,6 @@ class AppFixtures extends Fixture
 
         foreach ($classes as $classe) {
             $manager->persist($classe);
-            echo $classe->getNom() . PHP_EOL;
         }
 
 
@@ -228,7 +227,7 @@ class AppFixtures extends Fixture
                     ->setMatiere($matiere)
                     ->setSignalement(false)
                     ->setVisible(true)
-                    ->setCreerLe($dateAleatoireCreation);
+                    ->setCreeeLe($dateAleatoireCreation);
 
                 if (rand(0, 1) === 0) {
                     $question->setDateValidite($dateAleatoireValidite);
@@ -269,7 +268,7 @@ class AppFixtures extends Fixture
                     $dateReponse = new DateReponse();
 
                     $randomDate = new \DateTime();
-                    $randomDate->setTimestamp(rand($question->getCreerLe()->getTimestamp(), strtotime('-1 day')));
+                    $randomDate->setTimestamp(rand($question->getCreeeLe()->getTimestamp(), strtotime('-1 day')));
 
                     $dateReponse->setDate(new \DateTime('tomorrow'));
                     $dateReponse->setEstCorrect(rand(0, 1) === 0);

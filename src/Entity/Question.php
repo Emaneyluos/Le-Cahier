@@ -45,7 +45,7 @@ class Question
     private ?Professeur $supprimerPar = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $creerLe = null;
+    private ?\DateTimeInterface $creeeLe = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $modifieLe = null;
@@ -190,14 +190,14 @@ class Question
         return $this;
     }
 
-    public function getCreerLe(): ?\DateTimeInterface
+    public function getCreeeLe(): ?\DateTimeInterface
     {
-        return $this->creerLe;
+        return $this->creeeLe;
     }
 
-    public function setCreerLe(\DateTimeInterface $creerLe): static
+    public function setCreeeLe(\DateTimeInterface $creerLe): static
     {
-        $this->creerLe = $creerLe;
+        $this->creeeLe = $creerLe;
 
         return $this;
     }
