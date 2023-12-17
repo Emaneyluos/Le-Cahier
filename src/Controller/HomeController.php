@@ -2,18 +2,28 @@
 
 namespace App\Controller;
 
+use App\Entity\Niveau;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Question;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
-    public function index(): JsonResponse
+    #[Route('/', name: 'app_home')]
+    public function index(EntityManagerInterface $entityManager): Response
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/HomeController.php',
+        $repository = $entityManager->getRepository(Niveau::class);
+        $niveaux = $repository->findBy([], ['position' => 'ASC']);
+
+        $repository = $entityManager->getRepository(Question::class);
+        $questions = $repository->findBy([], ['creeeLe' => 'DESC']);
+
+        return $this->render('question/index.html.twig', [
+            'questions' => $questions,
+            'niveaux' => $niveaux,
         ]);
+
     }
 }
