@@ -10,28 +10,45 @@ use App\Entity\Matiere;
 use App\Entity\Professeur;
 use App\Entity\Question;
 use App\Entity\DateReponse;
-use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface; // Import the EntityManagerInterface class
+
 
 class AppFixtures extends Fixture
 {
-    public function __construct(ObjectManager $entityManager)
+    private $entityManager; // Create a private property
+
+    public function __construct(EntityManagerInterface $entityManager) // Add the constructor
     {
-        // Remove the unused property $entityManager
+        $this->entityManager = $entityManager;
     }
     
     public function load(ObjectManager $manager): void
     {
 
         $niveau6 = new Niveau();
-        $niveau6->setNom('6ème');
+        $niveau6
+            ->setNom('6ème')
+            ->setPosition(1);
+        $manager->persist($niveau6);
         $niveau5 = new Niveau();
-        $niveau5->setNom('5ème');
+        $niveau5
+            ->setNom('5ème')
+            ->setPosition(2);
+        $manager->persist($niveau5);
         $niveau4 = new Niveau();
-        $niveau4->setNom('4ème');
+        $niveau4
+            ->setNom('4ème')
+            ->setPosition(3);
+        $manager->persist($niveau4);
         $niveau3 = new Niveau();
-        $niveau3->setNom('3ème');
+        $niveau3
+            ->setNom('3ème')
+            ->setPosition(4);
+        $manager->persist($niveau3);
+
 
         $classes = [];
+
         $classe6A = new Classe();
         $classe6A->setNom('6ème A');
         $classe6A->setNiveau($niveau6);
@@ -113,65 +130,86 @@ class AppFixtures extends Fixture
         $classe3D->setNiveau($niveau3);
         $classes[] = $classe3D;
 
+        foreach ($classes as $classe) {
+            $manager->persist($classe);
+            echo $classe->getNom() . PHP_EOL;
+        }
+
 
         $maths = new Matiere();
         $maths->setNom('Mathématiques');
+        $manager->persist($maths);
 
         $histoire = new Matiere();
         $histoire->setNom('Histoire');
+        $manager->persist($histoire);
 
         $geographie = new Matiere();
         $geographie->setNom('Géographie');
+        $manager->persist($geographie);
 
         $sciences = new Matiere();
         $sciences->setNom('Sciences');
+        $manager->persist($sciences);
 
         $francais = new Matiere();
         $francais->setNom('Français');
+        $manager->persist($francais);
 
         $anglais = new Matiere();
         $anglais->setNom('Anglais');
-        
+        $manager->persist($anglais);
 
         
         $profMaths = new Professeur();
         $profMaths
             ->setNom('Mr. Dupont')
+            ->setCode(123456)
             ->setMatiere($maths);
+        $manager->persist($profMaths);
 
         $profHistoire = new Professeur();
         $profHistoire
             ->setNom('Ms. Durand')
+            ->setCode(123456)
             ->setMatiere($histoire);
+        $manager->persist($profHistoire);
         
         $profGeographie = new Professeur();
         $profGeographie
             ->setNom('Mme. Martin')
+            ->setCode(123456)
             ->setMatiere($geographie);
+        $manager->persist($profGeographie);
 
         $profSciences = new Professeur();
         $profSciences
             ->setNom('Mr. Lefevre')
+            ->setCode(123456)
             ->setMatiere($sciences);
+        $manager->persist($profSciences);
 
         $profFrancais = new Professeur();
         $profFrancais
             ->setNom('Mme. Dubois')
+            ->setCode(123456)
             ->setMatiere($francais);
+        $manager->persist($profFrancais);
 
         $profAnglais = new Professeur();
         $profAnglais
             ->setNom('Mr. Smith')
+            ->setCode(123456)
             ->setMatiere($anglais);
-        
+        $manager->persist($profAnglais);       
 
         $professeursParMatiere = [
-            $maths => $profMaths,
-            $histoire => $profHistoire,
-            $geographie => $profGeographie,
-            $sciences => $profSciences,
-            $francais => $profFrancais,
-            $anglais => $profAnglais,
+            $maths->getNom() => $profMaths,
+            $histoire->getNom() => $profHistoire,
+            $geographie->getNom() => $profGeographie,
+            $sciences->getNom() => $profSciences,
+            $francais->getNom() => $profFrancais,
+            $anglais->getNom() => $profAnglais,
         ];
     
         // Create questions for each class and subject
@@ -179,17 +217,21 @@ class AppFixtures extends Fixture
             foreach ([$maths, $histoire, $geographie, $sciences, $francais, $anglais] as $matiere) {
                 $question = new Question();
                 $professeur = $professeursParMatiere[$matiere->getNom()];
-                $dateAleatoireCreation = date('Y-m-d', strtotime('-1 year'));
-                $dateAleatoireValidite = date('Y-m-d', strtotime('+1 year'));
+                $dateAleatoireCreation = new \DateTime();
+                $dateAleatoireCreation->setTimestamp(rand(strtotime("-1 year"), strtotime('today')));
+                $dateAleatoireValidite = new \DateTime();
+                $dateAleatoireValidite->setTimestamp(rand(strtotime('today'), strtotime('+1 year')));
 
                 $question
                     ->setClasse($classe)
                     ->setProfesseur($professeur)
                     ->setMatiere($matiere)
-                    ->setCreerLe(new \DateTime($dateAleatoireCreation));
+                    ->setSignalement(false)
+                    ->setVisible(true)
+                    ->setCreerLe($dateAleatoireCreation);
 
                 if (rand(0, 1) === 0) {
-                    $question->setDateValidite(new \DateTime($dateAleatoireValidite));
+                    $question->setDateValidite($dateAleatoireValidite);
                 }
 
                 if ($matiere === $maths) {
@@ -226,34 +268,19 @@ class AppFixtures extends Fixture
                 for ($i = 0; $i < rand(0, 5); $i++) {
                     $dateReponse = new DateReponse();
 
-                    $today = new \DateTime();
-                    $yesterday = $today->modify('-1 day');
                     $randomDate = new \DateTime();
-                    $randomDate->setTimestamp($question->getCreerLe()->getTimestamp(), $yesterday->getTimestamp());
+                    $randomDate->setTimestamp(rand($question->getCreerLe()->getTimestamp(), strtotime('-1 day')));
 
-                    $question->setDateValidite($randomDate);
                     $dateReponse->setDate(new \DateTime('tomorrow'));
+                    $dateReponse->setEstCorrect(rand(0, 1) === 0);
+                    $manager->persist($dateReponse);
                     $question->addDateReponse($dateReponse);
                 }
 
+                $manager->persist($question);
+
             }
         }
-
-// ...
-
-
-        
-
-        // DateReponse Fixtures
-        $dateReponse1 = new DateReponse();
-        $dateReponse1->setDate(new \DateTime('tomorrow'));
-        // ...
-
-        // User Fixtures
-        $userStudent = new User();
-        $userStudent->setEmail('student@example.com');
-        // ...
-
 
         $manager->flush();
     }
