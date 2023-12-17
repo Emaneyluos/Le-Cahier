@@ -31,7 +31,7 @@ class QuestionFactory {
 
         $today = new \DateTime();
 
-        $question->setCreeLe($today);
+        $question->setCreerLe($today);
         $question->setSignalement(false);
 
         return $this->edit($question, $form);

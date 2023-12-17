@@ -29,6 +29,11 @@ class ProfesseurFactory {
      */
     public function create(Professeur $professeur, FormInterface $form) {
 
+        // Vérifier si le code n'est pas déjà utilisé
+        // Vérifier si le code n'est pas déjà utilisé
+        // Vérifier si le code n'est pas déjà utilisé
+        // Vérifier si le code n'est pas déjà utilisé
+
         return $this->edit($professeur, $form);
     }
 
