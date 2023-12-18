@@ -1,9 +1,30 @@
 {% extends 'base.html.twig' %} {# Extend your base layout #}
 
+{% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('js/burger.js') }}"></script>
+{% endblock %}
+
+
 {% block title %}Le Cahier{% endblock %}
 
 {% block body %}
+
+<div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+    
 <div class="container">
+
+    
+
     <aside class="sidebar">
         {% for niveau in niveaux %}
             <div class="niveau">

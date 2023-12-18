@@ -11,6 +11,7 @@ body {
 a {
     color: #007bff;
     text-decoration: none;
+    transition: color 0.3s ease; /* Smooth transition for link colors */
 }
 
 /* Header Styles */
@@ -21,167 +22,21 @@ header {
     text-align: center;
 }
 
-/* Form Styles */
-form {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    position: fixed; /* Fix the header at the top */
+    top: 0; /* Align the header to the top */
+    left: 0; /* Align the header to the left */
+    width: 100%; /* Ensure the header stretches across the full width */
+    z-index: 1000; /* Make sure the header is above other content */
 }
 
-/* Continued Form Styles */
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="date"],
-select {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-input[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-/* Responsive Design Adjustments */
 @media (max-width: 768px) {
     header {
         padding: 0.5rem;
-    }
-    form {
-        padding: 10px;
-    }
-}
-
-/* Styles for Questions Container and Cards */
-.questions-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
-.card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    width: 80%;
-    margin-bottom: 20px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-/* Card Header Styles */
-.card-header {
-    background-color: #007bff;
-    color: white;
-    padding: 15px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-/* Card Body Styles */
-.card-body {
-    padding: 15px;
-    line-height: 1.6;
-    color: #333;
-}
-
-/* Date Styles */
-.card-body .text-muted {
-    color: #6c757d;
-    font-style: italic;
-    margin-top: 10px;
-}
-
-/* Hover Effect for Cards */
-.card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    .card {
-        width: 90%;
-    }
-}
-
-/* Sidebar Styles */
-.sidebar {
-    width: 250px;
-    background-color: #343a40; /* Dark background color */
-    color: white;
-    padding: 20px;
-    height: 100vh; /* Full view height */
-    overflow-y: auto; /* Allows scrolling if necessary */
-    position: fixed; /* Fixes the sidebar to the side */
-}
-
-/* Level Titles Style */
-.sidebar .niveau h3 {
-    color: #f8f9fa;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Class List Style */
-.sidebar .niveau ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-.sidebar .niveau ul li {
-    margin: 10px 0;
-}
-
-/* Link Styles */
-.sidebar .niveau ul li a {
-    text-decoration: none;
-    color: #f8f9fa;
-    display: block;
-    transition: color 0.3s, background-color 0.3s;
-    padding: 5px 10px;
-    border-radius: 4px;
-}
-
-/* Hover Style for Links */
-.sidebar .niveau ul li a:hover {
-    background-color: #007bff;
-    color: white;
-}
-
-/* Adjustments for Larger Screens */
-@media (min-width: 768px) {
-    .sidebar {
-        width: 300px;
-    }
-}
-
-/* Main Container Style to Avoid Overlapping with Sidebar */
-.container {
-    margin-left: 250px; /* Equal to the sidebar width */
-}
-@media (min-width: 768px) {
-    .container {
-        margin-left: 300px; /* Equal to the sidebar width on larger screens */
     }
 }
 

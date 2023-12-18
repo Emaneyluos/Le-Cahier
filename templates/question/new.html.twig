@@ -2,6 +2,11 @@
 
 {% extends 'base.html.twig' %} {# Extend your base layout #}
 
+{% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/newQuestion.css') }}">
+{% endblock %}
+
 {% block title %}New Question{% endblock %}
 
 {% block body %}

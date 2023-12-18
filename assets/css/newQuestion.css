@@ -1,0 +1,45 @@
+/* Form Styles */
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+/* Continued Form Styles */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth background transition for buttons */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    form {
+        padding: 10px;
+    }
+}
