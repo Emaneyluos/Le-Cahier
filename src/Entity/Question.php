@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\QuestionRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 class Question
@@ -14,9 +16,12 @@ class Question
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['question:read'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Groups(['question:read'])]
+
     private ?\DateTimeInterface $dateValidite = null;
 
     #[ORM\Column]
@@ -24,15 +29,19 @@ class Question
 
     #[ORM\ManyToOne(inversedBy: 'question')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['question:read'])]
     private ?Classe $classe = null;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
     private ?Professeur $professeur = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['question:read'])]
+
     private ?string $question = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['question:read'])]
     private ?string $reponse = null;
 
     #[ORM\Column]
@@ -164,6 +173,16 @@ class Question
         }
 
         return $this;
+    }
+
+    #[Groups(['question:read'])]
+    public function getLastDateReponse(): ?DateTime
+    {
+        $dateReponses = $this->getDateReponses()->toArray();
+        if (empty($dateReponses)) {
+            return null;
+        }
+        return end($dateReponses)->getDate();
     }
 
     public function removeDateReponse(DateReponse $dateReponse): static
