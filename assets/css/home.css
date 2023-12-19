@@ -3,14 +3,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    margin-left: 300px; /* Adjusted margin for sidebar */
+    padding: 2rem;
+    padding-top: 4rem;
 }
 
 .card {
     background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 1rem;
+    box-shadow: 0 0.4rem 0.8rem 0 rgba(0,0,0,0.2);
     width: 80%;
     margin: 1rem auto; /* Adjusted margin for consistency */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effects */
@@ -20,16 +20,16 @@
 .card-header {
     background-color: #007bff;
     color: white;
-    padding: 15px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    padding: 1.5rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
     font-size: 1.25rem; /* Adjusted font size for better readability */
     font-weight: bold;
 }
 
 /* Card Body Styles */
 .card-body {
-    padding: 15px;
+    padding: 1.5rem;
     line-height: 1.6;
     color: #333;
 }
@@ -38,21 +38,21 @@
 .card-body .text-muted {
     color: #6c757d;
     font-style: italic;
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 
 /* Hover Effect for Cards */
 .card:hover {
-    transform: translateY(-5px); /* Subtle lift effect */
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: translateY(-0.5rem); /* Subtle lift effect */
+    box-shadow: 0 0.8rem 1.6rem 0 rgba(0,0,0,0.2);
 }
 
 /* Sidebar Styles */
 .sidebar {
-    width: 250px;
+    width: 25rem;
     background-color: #2c3e50; 
     color: white;
-    padding: 20px;
+    padding: 2rem;
     height: 100vh;
     overflow-y: auto;
     position: fixed;
@@ -65,12 +65,9 @@
 .sidebar .niveau h3 {
     cursor: pointer; /* Change mouse cursor on hover */
     color: #f8f9fa;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    
+    padding: 1rem 0;
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.1);
 }
-
-
 
 /* Class List Style */
 .sidebar .niveau ul {
@@ -83,7 +80,7 @@
 }
 
 .sidebar .niveau:hover ul {
-    max-height: 500px; /* Max height on hover to reveal the menu */
+    max-height: 50rem; /* Max height on hover to reveal the menu */
     /* Adjust this value based on the actual height needed */
 }
 
@@ -101,8 +98,8 @@
     text-decoration: none;
     color: #f8f9fa;
     display: block;
-    padding: 5px 10px;
-    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
     transition: all 0.3s ease; /* Uniform transition for all properties */
 }
 
@@ -116,8 +113,8 @@
 .burger {
     display: none; /* Hidden by default */
     cursor: pointer;
-    padding: 10px;
-    margin: 10px;
+    padding: 1rem;
+    margin: 1rem;
     position: fixed; /* Add position fixed */
     z-index: 99;
 }
@@ -144,7 +141,11 @@
 /* Adjustments for Larger Screens */
 @media (min-width: 768px) {
     .sidebar {
-        width: 300px;
+        width: 20rem; 
+    }
+
+    .questions-container {
+        margin-left: 20rem; /* Adjust width as sidebar */
     }
    
 }
@@ -159,17 +160,16 @@
     }
 
     .sidebar.active {
-        width: 250px; /* Adjust sidebar width to display */
-        padding: 20px;
+        width: 10rem; /* Adjust sidebar width to display */
+        padding: 2rem;
     }
 
-    /* Style pour le conteneur principal lors de l'ouverture du menu */
-    .container.active {
-        margin-left: 250px; /* Sidebar size when open */
-    }
-
+    
     .burger {
         display: block; /* Show the burger button */
-        
+    }
+
+    .card {
+        width: 100%;
     }
 }
