@@ -270,7 +270,7 @@ class AppFixtures extends Fixture
                     $randomDate = new \DateTime();
                     $randomDate->setTimestamp(rand($question->getCreeeLe()->getTimestamp(), strtotime('-1 day')));
 
-                    $dateReponse->setDate(new \DateTime('tomorrow'));
+                    $dateReponse->setDate($randomDate);
                     $dateReponse->setEstCorrect(rand(0, 1) === 0);
                     $manager->persist($dateReponse);
                     $question->addDateReponse($dateReponse);
