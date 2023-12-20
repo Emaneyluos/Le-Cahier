@@ -8,6 +8,7 @@
 {% block javascripts %}
         {{ parent() }}
         <script src="{{ asset('js/burger.js') }}"></script>
+        <script src="{{ asset('js/ajaxQuestion.js') }}"></script>
 {% endblock %}
 
 
@@ -15,15 +16,12 @@
 
 {% block body %}
 
-<div class="burger">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-    </div>
-    
-<div class="container">
-
-    
+    <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    <div class="container">
 
     <aside class="sidebar">
         {% for niveau in niveaux %}
@@ -31,29 +29,20 @@
                 <h3>{{ niveau.nom }}</h3>
                 <ul>
                     {% for classe in niveau.classes %}
-                        <li><a href="{{ path('app_home') }}">{{ classe.nom }}</a></li>
+                        <li><button class="load-questions" data-classe-id="{{ classe.id }}">{{ classe.nom }}</button></li>
                     {% endfor %}
                 </ul>
             </div>
         {% endfor %}
     </aside>
-    <div class="questions-container">
-    {% for question in questions %}
-        <div class="card">
-            <div class="card-header">
-                Question : {{ question.question }}
-            </div>
-            <div class="card-body">
-                <p>Réponse : {{ question.reponse }}</p>
-                <p class="text-muted">Créée le : {{ question.creeeLe|date('d/m/Y H:i') }}</p>
-                <p class="text-muted">Modifiée le : {{ question.modifieLe|date('d/m/Y H:i') }}</p>
-            </div>
-        </div>
-    {% else %}
-        <p>Aucune question trouvée.</p>
-    {% endfor %}
+    <div class="questions-container" id="questions-container">
+    
+    </div>
 </div>
-</div>
+
+<script>
+    var classeId = '{{ classeId.id }}';
+</script>
 
 {% endblock %}
 

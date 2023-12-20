@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProfesseurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,6 +17,7 @@ class Professeur
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['question:read'])]
     private ?string $nom = null;
 
     #[ORM\Column]

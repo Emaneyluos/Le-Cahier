@@ -6,9 +6,9 @@ use App\Repository\QuestionRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 class Question
@@ -21,7 +21,6 @@ class Question
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Groups(['question:read'])]
-
     private ?\DateTimeInterface $dateValidite = null;
 
     #[ORM\Column]
@@ -33,11 +32,11 @@ class Question
     private ?Classe $classe = null;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
+    #[Groups(['question:read'])]
     private ?Professeur $professeur = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Groups(['question:read'])]
-
     private ?string $question = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -54,6 +53,7 @@ class Question
     private ?Professeur $supprimerPar = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['question:read'])]
     private ?\DateTimeInterface $creeeLe = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
@@ -61,6 +61,7 @@ class Question
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['question:read'])]
     private ?Matiere $matiere = null;
 
     public function __construct()

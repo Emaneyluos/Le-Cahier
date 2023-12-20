@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Niveau;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Question;
+use App\Entity\Classe;
+use App\Entity\Niveau;
+use Doctrine\ORM\Mapping\Id;
 
 class HomeController extends AbstractController
 {
@@ -20,9 +22,13 @@ class HomeController extends AbstractController
         $repository = $entityManager->getRepository(Question::class);
         $questions = $repository->findBy([], ['creeeLe' => 'DESC']);
 
+        $repository = $entityManager->getRepository(Classe::class);
+        $classeId = $repository->findAll()[0];
+
         return $this->render('question/index.html.twig', [
             'questions' => $questions,
             'niveaux' => $niveaux,
+            'classeId' => $classeId,
         ]);
 
     }
