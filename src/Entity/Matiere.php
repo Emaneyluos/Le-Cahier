@@ -36,6 +36,11 @@ class Matiere
         $this->questions = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->nom;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
