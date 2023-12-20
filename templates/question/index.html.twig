@@ -29,7 +29,7 @@
                 <h3>{{ niveau.nom }}</h3>
                 <ul>
                     {% for classe in niveau.classes %}
-                        <li><button class="load-questions" data-classe-id="{{ classe.id }}">{{ classe.nom }}</button></li>
+                        <li><a class="load-questions" data-classe-id="{{ classe.id }}">{{ classe.nom }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
