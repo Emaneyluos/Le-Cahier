@@ -5,7 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Classe;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class ClasseCrudController extends AbstractCrudController
 {
@@ -19,7 +19,12 @@ class ClasseCrudController extends AbstractCrudController
     {
         return [
             TextField::new('nom'),
-            TextField::new('niveau'),
+            AssociationField::new('niveau')
+                ->setDefaultColumns('col-md-6 col-xxl-5'),
+                // ->setFormTypeOptions(['style' => $textFieldStyle]),
+                
         ];
     }
+
+
 }

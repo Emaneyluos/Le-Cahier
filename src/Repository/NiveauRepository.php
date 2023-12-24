@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Niveau;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @extends ServiceEntityRepository<Niveau>
@@ -19,6 +20,17 @@ class NiveauRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Niveau::class);
+    }
+
+    public function findByPositionGreaterOrEqualThan(int $position): Collection
+    {
+        return $this->createQueryBuilder('n')
+            ->andWhere('n.position >= :position')
+            ->setParameter('position', $position)
+            ->orderBy('n.position', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
 //    /**

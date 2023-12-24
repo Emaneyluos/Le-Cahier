@@ -42,4 +42,9 @@ class NiveauFactory {
     {
         return $niveau;
     }
+
+    public function delete(Niveau $niveau)
+    {
+        $this->niveauRepository->delete($niveau);
+    }
 }

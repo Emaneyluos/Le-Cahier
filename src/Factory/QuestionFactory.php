@@ -50,4 +50,9 @@ class QuestionFactory {
 
         return $question;
     }
+
+    public function delete(Question $question)
+    {
+        $this->questionRepository->delete($question);
+    }
 }

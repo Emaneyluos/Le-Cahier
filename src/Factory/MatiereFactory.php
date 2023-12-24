@@ -42,4 +42,9 @@ class MatiereFactory {
     {
         return $matiere;
     }
+
+    public function delete(Matiere $matiere)
+    {
+        $this->matiereRepository->delete($matiere);
+    }
 }

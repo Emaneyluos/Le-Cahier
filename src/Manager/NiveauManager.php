@@ -4,31 +4,36 @@ namespace App\Manager;
 
 use App\Entity\Niveau;
 use App\Factory\NiveauFactory;
-use App\Repository\NiveauRepository;
+use App\Repository\niveauRepository;
 use Symfony\Component\Form\FormInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class NiveauManager {
 
     /** @var NiveauFactory $niveauFactory */
     protected $niveauFactory;
 
-    /** @var NiveauRepository $niveauRepository */
+    /** @var niveauRepository $niveauRepository */
     protected $niveauRepository;
+
+    protected $entityManager;
 
     /**
      * NiveauManager constructor.
      * 
      * @param NiveauFactory $niveauFactory
-     * @param NiveauRepository $niveauRepository
+     * @param niveauRepository $niveauRepository
      */
     public function __construct
     (
         NiveauFactory $niveauFactory,
-        NiveauRepository $niveauRepository
+        niveauRepository $niveauRepository,
+        EntityManagerInterface $entityManager
     )
     {
         $this->niveauFactory = $niveauFactory;
-        $this->NiveauRepository = $niveauRepository;
+        $this->niveauRepository = $niveauRepository;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -49,7 +54,7 @@ class NiveauManager {
      */
     public function edit(Niveau $niveau, ?FormInterface $form = null):  Niveau
     {
-        $this->NiveauRepository->save($this->niveauFactory->edit($niveau, $form), true);
+        $this->niveauRepository->save($this->niveauFactory->edit($niveau, $form), true);
         return $niveau;
     }
 
@@ -59,7 +64,15 @@ class NiveauManager {
      */
     public function update(Niveau $niveau): Niveau
     {
-        $this->NiveauRepository->save($niveau, true);
+        $position = $niveau->getPosition();
+        $entiteExistante = $this->niveauRepository->findOneBy(['position' => $position]);
+
+        if ($entiteExistante) {
+            $this->decalerPositions($position);
+        }
+
+
+        $this->niveauRepository->save($niveau, true);
         return $niveau;
     }
 
@@ -71,5 +84,17 @@ class NiveauManager {
     {
         $this->niveauFactory->delete($niveau);
         return true;
+    }
+
+    private function decalerPositions($positionDeDepart)
+    {
+        $niveaux = $this->niveauRepository->findByPositionGreaterOrEqualThan($positionDeDepart);
+
+        foreach ($niveaux as $niveau) {
+            $niveau->setPosition($niveau->getPosition() + 1);
+            $this->entityManager->persist($niveau);
+        }
+
+        $this->entityManager->flush();
     }
 }
