@@ -23,6 +23,8 @@ class HomeController extends AbstractController
         $questions = $repository->findBy([], ['creeeLe' => 'DESC']);
 
         $repository = $entityManager->getRepository(Classe::class);
+
+        // TODO: Ajouter une option s'il n'y a pas de questions
         $classeId = $repository->findAll()[0];
 
         return $this->render('question/index.html.twig', [

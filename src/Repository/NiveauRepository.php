@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Niveau;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Common\Collections\Collection;
 
@@ -24,13 +25,23 @@ class NiveauRepository extends ServiceEntityRepository
 
     public function findByPositionGreaterOrEqualThan(int $position): Collection
     {
-        return $this->createQueryBuilder('n')
+        $result = $this->createQueryBuilder('n')
             ->andWhere('n.position >= :position')
             ->setParameter('position', $position)
             ->orderBy('n.position', 'ASC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
+
+        return new ArrayCollection($result);
+    }
+
+    public function save(Niveau $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
     }
 
 //    /**

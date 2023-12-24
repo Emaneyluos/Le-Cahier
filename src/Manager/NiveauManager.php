@@ -4,7 +4,7 @@ namespace App\Manager;
 
 use App\Entity\Niveau;
 use App\Factory\NiveauFactory;
-use App\Repository\niveauRepository;
+use App\Repository\NiveauRepository;
 use Symfony\Component\Form\FormInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -13,7 +13,7 @@ class NiveauManager {
     /** @var NiveauFactory $niveauFactory */
     protected $niveauFactory;
 
-    /** @var niveauRepository $niveauRepository */
+    /** @var NiveauRepository $niveauRepository */
     protected $niveauRepository;
 
     protected $entityManager;
@@ -22,7 +22,7 @@ class NiveauManager {
      * NiveauManager constructor.
      * 
      * @param NiveauFactory $niveauFactory
-     * @param niveauRepository $niveauRepository
+     * @param NiveauRepository $niveauRepository
      */
     public function __construct
     (
@@ -43,7 +43,7 @@ class NiveauManager {
      * @throws \Exception
      */
     public function create(Niveau $niveau, ?FormInterface $form = null): Niveau
-    {
+    { 
         return $this->niveauFactory->create($niveau, $form);
     }
 
@@ -64,14 +64,6 @@ class NiveauManager {
      */
     public function update(Niveau $niveau): Niveau
     {
-        $position = $niveau->getPosition();
-        $entiteExistante = $this->niveauRepository->findOneBy(['position' => $position]);
-
-        if ($entiteExistante) {
-            $this->decalerPositions($position);
-        }
-
-
         $this->niveauRepository->save($niveau, true);
         return $niveau;
     }
@@ -86,15 +78,5 @@ class NiveauManager {
         return true;
     }
 
-    private function decalerPositions($positionDeDepart)
-    {
-        $niveaux = $this->niveauRepository->findByPositionGreaterOrEqualThan($positionDeDepart);
-
-        foreach ($niveaux as $niveau) {
-            $niveau->setPosition($niveau->getPosition() + 1);
-            $this->entityManager->persist($niveau);
-        }
-
-        $this->entityManager->flush();
-    }
+    
 }

@@ -27,7 +27,7 @@ class NiveauFactory {
      * @return Niveau
      * @throws \Exception
      */
-    public function create(Niveau $niveau, FormInterface $form) {
+    public function create(Niveau $niveau, ?FormInterface $form) {
 
         return $this->edit($niveau, $form);
     }
@@ -40,11 +40,41 @@ class NiveauFactory {
      */
     public function edit(Niveau $niveau, ?FormInterface $form)
     {
+        $allNiveau = $this->niveauRepository->findAll("position", "DESC");
+        $lastposition = $allNiveau[0]->getPosition();
+
+        $position = $niveau->getPosition();
+
+        if ($position < 1 || $position === null) {
+            $position = $lastposition + 1;
+        } else {
+            $entiteExistante = $this->niveauRepository->findOneBy(['position' => $position]);
+
+            if ($entiteExistante) {
+                $this->decalerPositions($position);
+            } else {
+                if ($position > $lastposition + 1) {
+                    $niveau->setPosition($lastposition + 1);
+                }
+            }
+
+        }
+        
         return $niveau;
     }
 
     public function delete(Niveau $niveau)
     {
         $this->niveauRepository->delete($niveau);
+    }
+
+    private function decalerPositions($positionDeDepart)
+    {
+        $niveaux = $this->niveauRepository->findByPositionGreaterOrEqualThan($positionDeDepart);
+
+        foreach ($niveaux as $niveau) {
+            $niveau->setPosition($niveau->getPosition() + 1);
+            $this->niveauRepository->save($niveau, true);
+        }
     }
 }
