@@ -45,28 +45,14 @@ class NiveauCrudController extends AbstractCrudController
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        $request = $this->container->get('request_stack')->getCurrentRequest();
-
-        if ($request->isMethod('POST')) {
-            $position = $entityInstance->getPosition();
-            
-            $entiteExistante = $this->niveauRepository->findOneBy(['position' => $position]);
-            // if ($entiteExistante) {
-            //     var_dump($entiteExistante->getNom());
-
-            //     // Décaler les positions des entités existantes
-            //     $this->decalerPositions($positionDesiree);
-            // } else {
-            //     var_dump("pas d'entité existante");
-            // }
-
-            die();
-            
+        $allNiveau = $this->niveauManager->edit($entityInstance);
+        foreach ($allNiveau as $key => $value) {
+            $stringArray [] = $value->getNom() . " - " . $value->getPosition() . " ||| ";
         }
-
-        var_dump($entityInstance->getNom());
+        var_dump($stringArray);
+        var_dump(count($allNiveau));
         die();
-
-        parent::updateEntity($entityManager, $entityInstance);
+        $this->niveauManager->edit($entityInstance);
+        // parent::updateEntity($entityManager, $entityInstance);
     }
 }

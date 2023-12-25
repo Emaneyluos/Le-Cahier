@@ -45,6 +45,16 @@ class AppFixtures extends Fixture
             ->setNom('3ème')
             ->setPosition(4);
         $manager->persist($niveau3);
+        $niveau2 = new Niveau();
+        $niveau2
+            ->setNom('2nde')
+            ->setPosition(5);
+        $manager->persist($niveau2);
+        $niveau1 = new Niveau();
+        $niveau1
+            ->setNom('1ère')
+            ->setPosition(6);
+        $manager->persist($niveau1);
 
 
         $classes = [];

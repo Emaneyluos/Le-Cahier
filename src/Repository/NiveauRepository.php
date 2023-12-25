@@ -35,6 +35,18 @@ class NiveauRepository extends ServiceEntityRepository
         return new ArrayCollection($result);
     }
 
+    public function findByPositionLessOrEqualThan(int $position): Collection
+    {
+        $result = $this->createQueryBuilder('n')
+            ->andWhere('n.position <= :position')
+            ->setParameter('position', $position)
+            ->orderBy('n.position', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        return new ArrayCollection($result);
+    }
+
     public function save(Niveau $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -42,6 +54,14 @@ class NiveauRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findAllSortedByPosition(): array
+    {
+        return $this->createQueryBuilder('n')
+            ->orderBy('n.position', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

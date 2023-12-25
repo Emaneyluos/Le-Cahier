@@ -52,7 +52,7 @@ class NiveauManager {
      * @param FormInterface|null $form
      * @return Niveau
      */
-    public function edit(Niveau $niveau, ?FormInterface $form = null):  Niveau
+    public function edit(Niveau $niveau, ?FormInterface $form = null)//: Niveau
     {
         $this->niveauRepository->save($this->niveauFactory->edit($niveau, $form), true);
         return $niveau;
