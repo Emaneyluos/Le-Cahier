@@ -6,6 +6,7 @@ use App\Entity\Niveau;
 use App\Factory\NiveauFactory;
 use App\Repository\NiveauRepository;
 use Symfony\Component\Form\FormInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class NiveauManager {
 
@@ -14,6 +15,8 @@ class NiveauManager {
 
     /** @var NiveauRepository $niveauRepository */
     protected $niveauRepository;
+
+    protected $entityManager;
 
     /**
      * NiveauManager constructor.
@@ -24,11 +27,13 @@ class NiveauManager {
     public function __construct
     (
         NiveauFactory $niveauFactory,
-        NiveauRepository $niveauRepository
+        niveauRepository $niveauRepository,
+        EntityManagerInterface $entityManager
     )
     {
         $this->niveauFactory = $niveauFactory;
-        $this->NiveauRepository = $niveauRepository;
+        $this->niveauRepository = $niveauRepository;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -38,7 +43,8 @@ class NiveauManager {
      * @throws \Exception
      */
     public function create(Niveau $niveau, ?FormInterface $form = null): Niveau
-    {
+    { 
+        $this->niveauRepository->save($this->niveauFactory->create($niveau, $form), true);
         return $this->niveauFactory->create($niveau, $form);
     }
 
@@ -47,9 +53,9 @@ class NiveauManager {
      * @param FormInterface|null $form
      * @return Niveau
      */
-    public function edit(Niveau $niveau, ?FormInterface $form = null):  Niveau
+    public function edit(Niveau $niveau, ?FormInterface $form = null)//: Niveau
     {
-        $this->NiveauRepository->save($this->niveauFactory->edit($niveau, $form), true);
+        $this->niveauRepository->save($this->niveauFactory->edit($niveau, $form), true);
         return $niveau;
     }
 
@@ -59,7 +65,7 @@ class NiveauManager {
      */
     public function update(Niveau $niveau): Niveau
     {
-        $this->NiveauRepository->save($niveau, true);
+        $this->niveauRepository->save($niveau, true);
         return $niveau;
     }
 
@@ -69,7 +75,9 @@ class NiveauManager {
      */
     public function delete(Niveau $niveau): bool
     {
-        $this->niveauFactory->delete($niveau);
+        $this->niveauRepository->delete($niveau, true);
         return true;
     }
+
+    
 }

@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Niveau;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @extends ServiceEntityRepository<Niveau>
@@ -19,6 +21,48 @@ class NiveauRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Niveau::class);
+    }
+
+    public function findByPositionGreaterOrEqualThan(int $position): Collection
+    {
+        $result = $this->createQueryBuilder('n')
+            ->andWhere('n.position >= :position')
+            ->setParameter('position', $position)
+            ->orderBy('n.position', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        return new ArrayCollection($result);
+    }
+
+    public function findByPositionLessOrEqualThan(int $position): Collection
+    {
+        $result = $this->createQueryBuilder('n')
+            ->andWhere('n.position <= :position')
+            ->setParameter('position', $position)
+            ->orderBy('n.position', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        return new ArrayCollection($result);
+    }
+
+    public function save(Niveau $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function delete(Niveau $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
     }
 
 //    /**

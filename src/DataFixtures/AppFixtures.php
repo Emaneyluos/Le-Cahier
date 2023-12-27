@@ -46,7 +46,7 @@ class AppFixtures extends Fixture
             ->setPosition(4);
         $manager->persist($niveau3);
 
-
+        
         $classes = [];
 
         $classe6A = new Classe();

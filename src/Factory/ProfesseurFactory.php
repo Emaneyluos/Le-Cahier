@@ -47,4 +47,9 @@ class ProfesseurFactory {
     {
         return $professeur;
     }
+
+    public function delete(Professeur $professeur)
+    {
+        $this->professeurRepository->delete($professeur);
+    }
 }

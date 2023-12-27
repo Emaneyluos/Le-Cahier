@@ -42,4 +42,9 @@ class ClasseFactory {
     {
         return $classe;
     }
+
+    public function delete(Classe $classe)
+    {
+        $this->classeRepository->delete($classe);
+    }
 }

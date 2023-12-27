@@ -42,4 +42,9 @@ class DateReponseFactory {
     {
         return $dateReponse;
     }
+
+    public function delete(DateReponse $dateReponse)
+    {
+        $this->dateReponseRepository->delete($dateReponse);
+    }
 }
