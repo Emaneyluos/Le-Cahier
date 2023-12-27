@@ -44,6 +44,7 @@ class NiveauManager {
      */
     public function create(Niveau $niveau, ?FormInterface $form = null): Niveau
     { 
+        $this->niveauRepository->save($this->niveauFactory->create($niveau, $form), true);
         return $this->niveauFactory->create($niveau, $form);
     }
 
@@ -74,7 +75,7 @@ class NiveauManager {
      */
     public function delete(Niveau $niveau): bool
     {
-        $this->niveauFactory->delete($niveau);
+        $this->niveauRepository->delete($niveau, true);
         return true;
     }
 

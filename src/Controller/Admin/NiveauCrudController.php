@@ -8,7 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use Doctrine\ORM\EntityManagerInterface;
-
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class NiveauCrudController extends AbstractCrudController
 {
@@ -36,23 +36,26 @@ class NiveauCrudController extends AbstractCrudController
         ];
     }
 
+    //Configurer le tri d'affichage 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setDefaultSort(['position' => 'ASC']);
+    }
+
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     { 
-        $managedEntity = $this->niveauManager->create($entityInstance);
-        parent::persistEntity($entityManager, $managedEntity);
+        $this->niveauManager->create($entityInstance);
     }
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        $allNiveau = $this->niveauManager->edit($entityInstance);
-        foreach ($allNiveau as $key => $value) {
-            $stringArray [] = $value->getNom() . " - " . $value->getPosition() . " ||| ";
-        }
-        var_dump($stringArray);
-        var_dump(count($allNiveau));
-        die();
+    {  
         $this->niveauManager->edit($entityInstance);
-        // parent::updateEntity($entityManager, $entityInstance);
+    }
+
+    public function deleteEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        $this->niveauManager->delete($entityInstance);
     }
 }

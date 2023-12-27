@@ -56,12 +56,13 @@ class NiveauRepository extends ServiceEntityRepository
         }
     }
 
-    public function findAllSortedByPosition(): array
+    public function delete(Niveau $entity, bool $flush = false): void
     {
-        return $this->createQueryBuilder('n')
-            ->orderBy('n.position', 'DESC')
-            ->getQuery()
-            ->getResult();
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
     }
 
 //    /**
