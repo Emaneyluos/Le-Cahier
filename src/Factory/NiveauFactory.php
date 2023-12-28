@@ -95,6 +95,11 @@ class NiveauFactory {
 
     public function delete(Niveau $niveau)
     {
+        $allNiveau = $this->niveauRepository->findAll();
+        $positionDeDepart = $niveau->getPosition();
+        $lastposition = count($allNiveau);
+        $niveau->setPosition($lastposition);
+        $this->decalerPositions($niveau, $positionDeDepart);
         return $niveau;
     }
 

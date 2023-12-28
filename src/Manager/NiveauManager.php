@@ -61,21 +61,11 @@ class NiveauManager {
 
     /**
      * @param Niveau $niveau
-     * @return Niveau
-     */
-    public function update(Niveau $niveau): Niveau
-    {
-        $this->niveauRepository->save($niveau, true);
-        return $niveau;
-    }
-
-    /**
-     * @param Niveau $niveau
      * @return bool
      */
     public function delete(Niveau $niveau): bool
     {
-        $this->niveauRepository->delete($niveau, true);
+        $this->niveauRepository->delete($this->niveauFactory->delete($niveau), true);
         return true;
     }
 
