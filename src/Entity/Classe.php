@@ -31,10 +31,14 @@ class Classe
     #[ORM\JoinColumn(nullable: false)]
     private ?Niveau $niveau = null;
 
+    #[ORM\ManyToMany(targetEntity: Professeur::class, mappedBy: 'classes')]
+    private Collection $professeurs;
+
     public function __construct()
     {
         $this->question = new ArrayCollection();
         $this->matieres = new ArrayCollection();
+        $this->professeurs = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -124,6 +128,33 @@ class Classe
     public function setNiveau(?Niveau $niveau): static
     {
         $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Professeur>
+     */
+    public function getProfesseurs(): Collection
+    {
+        return $this->professeurs;
+    }
+
+    public function addProfesseur(Professeur $professeur): static
+    {
+        if (!$this->professeurs->contains($professeur)) {
+            $this->professeurs->add($professeur);
+            $professeur->addClass($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProfesseur(Professeur $professeur): static
+    {
+        if ($this->professeurs->removeElement($professeur)) {
+            $professeur->removeClass($this);
+        }
 
         return $this;
     }

@@ -28,7 +28,7 @@ class QuestionManager {
     )
     {
         $this->questionFactory = $questionFactory;
-        $this->QuestionRepository = $questionRepository;
+        $this->questionRepository = $questionRepository;
     }
 
     /**
@@ -39,7 +39,9 @@ class QuestionManager {
      */
     public function create(Question $question, ?FormInterface $form = null): Question
     {
-        return $this->questionFactory->create($question, $form);
+        $createdQuestion = $this->questionFactory->create($question, $form);
+        $this->questionRepository->save($createdQuestion, true);
+        return $createdQuestion;
     }
 
     /**
@@ -49,17 +51,7 @@ class QuestionManager {
      */
     public function edit(Question $question, ?FormInterface $form = null):  Question
     {
-        $this->QuestionRepository->save($this->questionFactory->edit($question, $form), true);
-        return $question;
-    }
-
-    /**
-     * @param Question $question
-     * @return Question
-     */
-    public function update(Question $question): Question
-    {
-        $this->QuestionRepository->save($question, true);
+        $this->questionRepository->save($this->questionFactory->edit($question, $form), true);
         return $question;
     }
 

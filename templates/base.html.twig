@@ -6,9 +6,11 @@
     {% block stylesheets %}
         {# Link to your main stylesheet #}
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/alert.css') }}">
     {% endblock %}
     {% block javascripts %}
-{% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+        <script src="{{ asset('js/alert.js') }}"></script>
         {# Any global JavaScript files #}
     {% endblock %}
 </head>
@@ -21,9 +23,28 @@
     </header>
 
     <main>
-        {% block body %}
-        {# Main content will be rendered here #}
-        {% endblock %}
+    {% for flash_message in app.flashes('notice') %}
+    <div class="alert alert-notice">
+        {{ flash_message }}
+        <button class="alert-close-btn">&times;</button>
+    </div>
+    {% endfor %}
+
+    {% for flash_message in app.flashes('error') %}
+        <div class="alert alert-danger" onclick="closeAlert(this)">
+            {{ flash_message }}
+            <button class="alert-close-btn">&times;</button>
+        </div>
+    {% endfor %}
+
+    {% for flash_message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+            <button class="alert-close-btn">&times;</button>
+        </div>
+    {% endfor %}
+
+    {% block body %}{% endblock %}
     </main>
 
     <footer>

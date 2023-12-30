@@ -1,0 +1,64 @@
+.alert {
+    left: 50%;
+    transform: translateX(-50%);    
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    width: 95%;
+    position: absolute;
+    /* transition: all 0.3s ease-in-out; */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    z-index: 9999;
+
+    
+}
+
+/* Positionnement et style du bouton de fermeture */
+.alert-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Styles spécifiques pour chaque type de message */
+.alert-notice {
+    background-color: #f9f9f9;
+    color: #31708f;
+    border-left: 6px solid #bce8f1;
+}
+
+.alert-danger {
+    background-color: #f2dede;
+    color: #a94442;
+    border-left: 6px solid #ebccd1;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border-left: 6px solid #d6e9c6;
+}
+
+/* Animation d'entrée et de sortie */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-20px); }
+}
+
+/* .alert-enter {
+    animation: fadeIn 0.3s ease-in-out;
+} */
+
+/* .alert-exit {
+    animation: fadeOut 0.3s ease-in-out;
+} */

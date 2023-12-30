@@ -32,10 +32,14 @@ class Professeur
     #[ORM\ManyToOne(inversedBy: 'professeur')]
     private ?Matiere $matiere = null;
 
+    #[ORM\ManyToMany(targetEntity: Classe::class, inversedBy: 'professeurs')]
+    private Collection $classes;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
         $this->questionsSupprimes = new ArrayCollection();
+        $this->classes = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -142,5 +146,34 @@ class Professeur
         $this->matiere = $matiere;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Classe>
+     */
+    public function getClasses(): Collection
+    {
+        return $this->classes;
+    }
+
+    public function addClasse(Classe $classe): static
+    {
+        if (!$this->classes->contains($classe)) {
+            $this->classes->add($classe);
+        }
+
+        return $this;
+    }
+
+    public function removeClasse(Classe $classe): static
+    {
+        $this->classes->removeElement($classe);
+
+        return $this;
+    }
+
+    public function hasClasse(Classe $classe): bool
+    {
+        return $this->classes->contains($classe);
     }
 }

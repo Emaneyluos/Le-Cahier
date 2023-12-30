@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class QuestionType extends AbstractType
 {
@@ -23,11 +24,10 @@ class QuestionType extends AbstractType
             ])
             ->add('classe', EntityType::class, [
                 'class' => Classe::class,
-                'choice_label' => 'name',
+                'choice_label' => 'nom',
             ])
-            ->add('professeur', EntityType::class, [
-                'class' => Professeur::class,
-                'choice_label' => 'code',
+            ->add('codeProfesseur', NumberType::class, [
+                'mapped' => false,
             ])
             ->add('question', TextType::class)
             ->add('reponse', TextType::class)
