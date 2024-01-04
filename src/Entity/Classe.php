@@ -144,7 +144,7 @@ class Classe
     {
         if (!$this->professeurs->contains($professeur)) {
             $this->professeurs->add($professeur);
-            $professeur->addClass($this);
+            $professeur->addClasse($this);
         }
 
         return $this;
@@ -153,7 +153,7 @@ class Classe
     public function removeProfesseur(Professeur $professeur): static
     {
         if ($this->professeurs->removeElement($professeur)) {
-            $professeur->removeClass($this);
+            $professeur->removeClasse($this);
         }
 
         return $this;
