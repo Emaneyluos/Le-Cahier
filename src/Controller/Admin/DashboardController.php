@@ -15,6 +15,8 @@ use App\Entity\Matiere;
 use App\Entity\Niveau;
 use App\Entity\Professeur;
 
+// TODO: Ajout de la sécurité d'accès au dashboard
+
 class DashboardController extends AbstractDashboardController
 {
     #[Route('/admin', name: 'admin')]

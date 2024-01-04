@@ -19,10 +19,7 @@ class ClasseCrudController extends AbstractCrudController
     {
         return [
             TextField::new('nom'),
-            AssociationField::new('niveau')
-                ->setDefaultColumns('col-md-6 col-xxl-5'),
-                // ->setFormTypeOptions(['style' => $textFieldStyle]),
-                
+            AssociationField::new('niveau')->setDefaultColumns('col-md-6 col-xxl-5'),
         ];
     }
 

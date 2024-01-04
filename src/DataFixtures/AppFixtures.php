@@ -133,6 +133,7 @@ class AppFixtures extends Fixture
         foreach ($classes as $classe) {
             $manager->persist($classe);
         }
+        $nombreClasses = count($classes);
 
 
         $maths = new Matiere();
@@ -163,43 +164,73 @@ class AppFixtures extends Fixture
         $profMaths = new Professeur();
         $profMaths
             ->setNom('Mr. Dupont')
-            ->setCode(123456)
+            ->setCode(rand(100000, 999999))
             ->setMatiere($maths);
+        $nombreProfClasse = rand(1, 10);
+        for ($i = 0; $i < $nombreProfClasse; $i++) {
+            $numeroClasse = rand(0, $nombreClasses - 1);
+            $profMaths->addClasse($classes[$numeroClasse]);
+        }
         $manager->persist($profMaths);
 
         $profHistoire = new Professeur();
         $profHistoire
             ->setNom('Ms. Durand')
-            ->setCode(123456)
+            ->setCode(rand(100000, 999999))
             ->setMatiere($histoire);
+        $nombreProfClasse = rand(1, 10);
+        for ($i = 0; $i < $nombreProfClasse; $i++) {
+            $numeroClasse = rand(0, $nombreClasses - 1);
+            $profHistoire->addClasse($classes[$numeroClasse]);
+        }
         $manager->persist($profHistoire);
         
         $profGeographie = new Professeur();
         $profGeographie
             ->setNom('Mme. Martin')
-            ->setCode(123456)
+            ->setCode(rand(100000, 999999))
             ->setMatiere($geographie);
+        $nombreProfClasse = rand(1, 10);
+        for ($i = 0; $i < $nombreProfClasse; $i++) {
+            $numeroClasse = rand(0, $nombreClasses - 1);
+            $profGeographie->addClasse($classes[$numeroClasse]);
+        }
         $manager->persist($profGeographie);
 
         $profSciences = new Professeur();
         $profSciences
             ->setNom('Mr. Lefevre')
-            ->setCode(123456)
+            ->setCode(rand(100000, 999999))
             ->setMatiere($sciences);
+        $nombreProfClasse = rand(1, 10);
+        for ($i = 0; $i < $nombreProfClasse; $i++) {
+            $numeroClasse = rand(0, $nombreClasses - 1);
+            $profSciences->addClasse($classes[$numeroClasse]);
+        }
         $manager->persist($profSciences);
 
         $profFrancais = new Professeur();
         $profFrancais
             ->setNom('Mme. Dubois')
-            ->setCode(123456)
+            ->setCode(rand(100000, 999999))
             ->setMatiere($francais);
+        $nombreProfClasse = rand(1, 10);
+        for ($i = 0; $i < $nombreProfClasse; $i++) {
+            $numeroClasse = rand(0, $nombreClasses - 1);
+            $profFrancais->addClasse($classes[$numeroClasse]);
+        }
         $manager->persist($profFrancais);
 
         $profAnglais = new Professeur();
         $profAnglais
             ->setNom('Mr. Smith')
-            ->setCode(123456)
+            ->setCode(rand(100000, 999999))
             ->setMatiere($anglais);
+        $nombreProfClasse = rand(1, 10);
+        for ($i = 0; $i < $nombreProfClasse; $i++) {
+            $numeroClasse = rand(0, $nombreClasses - 1);
+            $profAnglais->addClasse($classes[$numeroClasse]);
+        }
         $manager->persist($profAnglais);       
 
         $professeursParMatiere = [
