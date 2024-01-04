@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class QuestionType extends AbstractType
 {
@@ -26,13 +26,11 @@ class QuestionType extends AbstractType
                 'class' => Classe::class,
                 'choice_label' => 'nom',
             ])
-            ->add('codeProfesseur', NumberType::class, [
+            ->add('codeProfesseur', PasswordType::class, [
                 'mapped' => false,
             ])
             ->add('question', TextType::class)
             ->add('reponse', TextType::class)
-            // If you want to add fields for DateReponses, you need to handle it here as well.
-            // ...
         ;
     }
 

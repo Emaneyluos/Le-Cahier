@@ -23,30 +23,6 @@ class NiveauRepository extends ServiceEntityRepository
         parent::__construct($registry, Niveau::class);
     }
 
-    public function findByPositionGreaterOrEqualThan(int $position): Collection
-    {
-        $result = $this->createQueryBuilder('n')
-            ->andWhere('n.position >= :position')
-            ->setParameter('position', $position)
-            ->orderBy('n.position', 'ASC')
-            ->getQuery()
-            ->getResult();
-
-        return new ArrayCollection($result);
-    }
-
-    public function findByPositionLessOrEqualThan(int $position): Collection
-    {
-        $result = $this->createQueryBuilder('n')
-            ->andWhere('n.position <= :position')
-            ->setParameter('position', $position)
-            ->orderBy('n.position', 'ASC')
-            ->getQuery()
-            ->getResult();
-
-        return new ArrayCollection($result);
-    }
-
     public function save(Niveau $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

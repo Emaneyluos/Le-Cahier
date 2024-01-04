@@ -21,6 +21,14 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    public function save(Question $question, bool $flush = false): void
+    {
+        $this->_em->persist($question);
+        if ($flush) {
+            $this->_em->flush();
+        }
+    }
+
 //    /**
 //     * @return Question[] Returns an array of Question objects
 //     */

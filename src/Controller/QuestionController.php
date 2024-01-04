@@ -49,7 +49,7 @@ class QuestionController extends AbstractController
                 ]);
             }
             
-            if ($question->getDateValidite() < new \DateTime()) {
+            if ($question->getDateValidite() != null && $question->getDateValidite() < new \DateTime()) {
                 $this->addFlash('error', 'La date de validité doit être supérieure à la date du jour');
                 return $this->render('question/new.html.twig', [
                     'question' => $question,
@@ -60,7 +60,7 @@ class QuestionController extends AbstractController
             $this->questionManager->create($question,$form);
 
             $this->addFlash('success', 'Question ajoutée avec succès');
-            return $this->redirectToRoute('home'); // Replace with your desired route
+            return $this->redirectToRoute('app_home'); // Replace with your desired route
         }
 
         return $this->render('question/new.html.twig', [
