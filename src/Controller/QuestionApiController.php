@@ -11,6 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Question;
 use App\Entity\Classe;
 
+// TODO: Protéger contre les appels en brut force
+
 class QuestionApiController extends AbstractController
 {
 

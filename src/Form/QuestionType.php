@@ -18,19 +18,26 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('codeProfesseur', PasswordType::class, [
+                'mapped' => false,
+                'attr' => ['maxlength' => 6],
+            ])
             ->add('dateValidite', DateType::class, [
                 'required' => false,
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'attr' => ['class' => 'question-hidden'],
             ])
             ->add('classe', EntityType::class, [
                 'class' => Classe::class,
                 'choice_label' => 'nom',
+                'attr' => ['class' => 'question-hidden'],
             ])
-            ->add('codeProfesseur', PasswordType::class, [
-                'mapped' => false,
+            ->add('question', TextType::class, [
+                'attr' => ['class' => 'question-hidden'],
             ])
-            ->add('question', TextType::class)
-            ->add('reponse', TextType::class)
+            ->add('reponse', TextType::class, [
+                'attr' => ['class' => 'question-hidden'],
+            ])
         ;
     }
 

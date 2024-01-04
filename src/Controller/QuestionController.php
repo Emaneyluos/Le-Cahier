@@ -23,7 +23,7 @@ class QuestionController extends AbstractController
     }
 
     #[Route('/question/new', name: 'question_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response // Add EntityManagerInterface as a parameter
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
@@ -32,7 +32,7 @@ class QuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $code = $form->get("codeProfesseur")->getData();
-            $professeur = $entityManager->getRepository(Professeur::class)->findOneBy(['code' => $code]); // Use $entityManager instead of $this->getDoctrine()
+            $professeur = $entityManager->getRepository(Professeur::class)->findOneBy(['code' => $code]);
             if ($professeur == null) {
                 $this->addFlash('error', 'Code incorrect');
                 return $this->render('question/new.html.twig', [
@@ -60,7 +60,7 @@ class QuestionController extends AbstractController
             $this->questionManager->create($question,$form);
 
             $this->addFlash('success', 'Question ajoutée avec succès');
-            return $this->redirectToRoute('app_home'); // Replace with your desired route
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('question/new.html.twig', [

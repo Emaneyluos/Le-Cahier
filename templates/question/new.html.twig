@@ -1,10 +1,13 @@
-{# templates/question/new.html.twig #}
-
-{% extends 'base.html.twig' %} {# Extend your base layout #}
+{% extends 'base.html.twig' %} 
 
 {% block stylesheets %}
         {{ parent() }}
         <link rel="stylesheet" href="{{ asset('css/newQuestion.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('js/newQuestion.js') }}"></script>
 {% endblock %}
 
 {% block title %}New Question{% endblock %}
@@ -14,19 +17,15 @@
 
     {{ form_start(form) }}
 
-    {# Render each form field individually. For example: #}
+    {{ form_row(form.codeProfesseur) }}
     {{ form_row(form.dateValidite) }}
     {{ form_row(form.classe) }}
-    {{ form_row(form.codeProfesseur) }}
     {{ form_row(form.question) }}
     {{ form_row(form.reponse) }}
-    {# ... Add other fields as necessary #}
 
-    {# Submit button #}
     <button class="btn btn-primary">Submit</button>
 
     {{ form_end(form) }}
 
-    {# Optionally, add a link to go back to the list of questions #}
     <a href="{{ path('app_home') }}">Back to the list</a>
 {% endblock %}
