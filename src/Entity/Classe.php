@@ -14,10 +14,11 @@ class Classe
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['question:read'])]
+    #[Groups(['question:read', 'professeur_classe:read'])]
+    // #[Groups(['professeur_classe:read'])]
     private ?int $id = null;
 
-    #[Groups(['question:read'])]
+    #[Groups(['question:read', 'professeur_classe:read'])]
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 

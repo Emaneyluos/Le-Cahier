@@ -2,17 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     chargementQuestions(classeId);
-    console.log(document.getElementById('load-questions'));
-
 
     var allButtons = document.getElementsByClassName('load-questions')
-    // allButtons.forEach((button) => {
-    //     button.addEventListener('click', function() {
-    //         var dataClasseId = this.getAttribute('data-classe-id');
-    //         console.log("click : " + dataClasseId);
-    //         chargementQuestions(dataClasseId);
-    //     });
-    // });
 
     for (var i = 0; i < allButtons.length; i++) {
         allButtons[i].addEventListener('click', function() {
