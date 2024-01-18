@@ -35,21 +35,22 @@ class QuestionApiController extends AbstractController
             ['classe' => $classe, 'visible' => true],
         );
 
-        $questionsRepondues = array_filter($questions, function ($question) {
-            return $question->getDateReponses()->count() > 0;
-        });
+        // $questionsRepondues = array_filter($questions, function ($question) {
+        //     return $question->getDateReponses()->count() > 0;
+        // });
 
-        usort($questionsRepondues, function ($a, $b) {
-            return $b->getLastDateReponse() <=> $a->getLastDateReponse();
-        });
+        // usort($questionsRepondues, function ($a, $b) {
+        //     return $b->getLastDateReponse() <=> $a->getLastDateReponse();
+        // });
 
-        $questionsNonRepondues = array_filter($questions, function ($question) {
-            return $question->getDateReponses()->count() == 0;
-        });
+        // $questionsNonRepondues = array_filter($questions, function ($question) {
+        //     return $question->getDateReponses()->count() == 0;
+        // });
 
-        $json = $serializer->serialize($questionsRepondues, 'json', [
+        $json = $serializer->serialize($questions, 'json', [
             'groups' => 'question:read'
         ]);
+        
         
         return new JsonResponse($json, Response::HTTP_OK, [], true);
     }

@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
@@ -32,10 +33,10 @@ class QuestionType extends AbstractType
                 'choice_label' => 'nom',
                 'attr' => ['class' => 'question-hidden'],
             ])
-            ->add('question', TextType::class, [
+            ->add('question', TextareaType::class, [
                 'attr' => ['class' => 'question-hidden'],
             ])
-            ->add('reponse', TextType::class, [
+            ->add('reponse', TextareaType::class, [
                 'attr' => ['class' => 'question-hidden'],
             ])
         ;

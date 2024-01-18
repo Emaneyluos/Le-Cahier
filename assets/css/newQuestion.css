@@ -8,7 +8,7 @@ form {
 }
 
 /* Continued Form Styles */
-input[type="text"],
+textarea,
 input[type="password"],
 input[type="email"],
 input[type="date"],

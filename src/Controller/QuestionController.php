@@ -57,6 +57,8 @@ class QuestionController extends AbstractController
                 ]);
             }
 
+            $question->setClasse($question->getClasse());
+
             $this->questionManager->create($question,$form);
 
             $this->addFlash('success', 'Question ajoutée avec succès');
