@@ -55,6 +55,10 @@ sf: ## List all Symfony commands or pass the parameter "c=" to run a given comma
 cc: c=c:c ## Clear the cache
 cc: sf
 
+php:  ## List all php commands or pass the parameter "c=" to run a given command, example: make php c=bin/phpunit
+	@$(eval c ?=)
+	@$(PHP) $(c)
+
 ## —— Database 💾 ———————————————————————————————————————————————————————————————
 db: ## Access to the CLI of the database
 	@$(DOCKER_EXEC) le-cahier-database-1 psql -U app -d app
