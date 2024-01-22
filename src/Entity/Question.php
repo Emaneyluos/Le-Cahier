@@ -19,6 +19,7 @@ class Question
     #[Groups(['question:read'])]
     private ?int $id = null;
 
+    // TODO: add a cron for check that
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Groups(['question:read'])]
     private ?\DateTimeInterface $dateValidite = null;

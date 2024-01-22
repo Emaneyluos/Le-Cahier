@@ -16,6 +16,8 @@ use App\Entity\Niveau;
 use App\Entity\Professeur;
 
 // TODO: Ajout de la sécurité d'accès au dashboard
+// TODO: add a command for create new user-admin
+// TODO: add a functionality for create a new admin user from the back-office
 
 class DashboardController extends AbstractDashboardController
 {
