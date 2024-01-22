@@ -20,7 +20,6 @@
 10. *Optional* Run `make sf c=doctrine:fixtures:load` to load the fixture
 11. Open `https://localhost:5050` for PG Admin 
 
- 
 12. Open `https://localhost` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334) and take a look at the Makefile!
 
 **Enjoy!**
