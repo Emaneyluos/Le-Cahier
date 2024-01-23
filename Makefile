@@ -59,6 +59,23 @@ php:  ## List all php commands or pass the parameter "c=" to run a given command
 	@$(eval c ?=)
 	@$(PHP) $(c)
 
+## —— Testing 🧪 ———————————————————————————————————————————————————————————————
+testing: unit phpcs
+
+unit: ## Lunch unit tests
+	@$(eval c ?=)
+	@$(PHP) $(c) bin/phpunit
+
+phpcs: ## Lunch PHPCodeSniffer. It looking at the code for PSR12 standard
+	@$(eval c ?=)
+	@$(PHP) $(c) vendor/squizlabs/php_codesniffer/bin/phpcs src/ tests/
+
+phpcbf: ## Lunch PHPCodeSniffer. It looking at the code for PSR12 standard
+	@$(eval c ?=)
+	@$(PHP) $(c) vendor/squizlabs/php_codesniffer/bin/phpcbf src/ tests/
+
+
+
 ## —— Database 💾 ———————————————————————————————————————————————————————————————
 db: ## Access to the CLI of the database
 	@$(DOCKER_EXEC) le-cahier-database-1 psql -U app -d app
