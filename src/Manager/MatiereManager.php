@@ -26,7 +26,7 @@ class MatiereManager
         MatiereRepository $matiereRepository
     ) {
         $this->matiereFactory = $matiereFactory;
-        $this->MatiereRepository = $matiereRepository;
+        $this->matiereRepository = $matiereRepository;
     }
 
     /**
@@ -47,7 +47,7 @@ class MatiereManager
      */
     public function edit(Matiere $matiere, ?FormInterface $form = null): Matiere
     {
-        $this->MatiereRepository->save($this->matiereFactory->edit($matiere, $form), true);
+        $this->matiereRepository->save($this->matiereFactory->edit($matiere, $form), true);
         return $matiere;
     }
 
@@ -57,7 +57,7 @@ class MatiereManager
      */
     public function update(Matiere $matiere): Matiere
     {
-        $this->MatiereRepository->save($matiere, true);
+        $this->matiereRepository->save($matiere, true);
         return $matiere;
     }
 

@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class ClasseTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $classe = new Classe();
         $this->assertInstanceOf(Classe::class, $classe);
@@ -27,14 +27,14 @@ class ClasseTest extends TestCase
         $this->assertNull($classe->getId());
     }
 
-    public function testGetSetNom()
+    public function testGetSetNom(): void
     {
         $classe = new Classe();
         $classe->setNom('6èmeA');
         $this->assertEquals('6èmeA', $classe->getNom());
     }
 
-    public function testAddGetQuestion()
+    public function testAddGetQuestion(): void
     {
         $classe = new Classe();
         $question = new Question();
@@ -43,7 +43,7 @@ class ClasseTest extends TestCase
         $this->assertContains($question, $classe->getQuestion());
     }
 
-    public function testRemoveQuestion()
+    public function testRemoveQuestion(): void
     {
         $classe = new Classe();
         $question = new Question();
@@ -52,7 +52,7 @@ class ClasseTest extends TestCase
         $this->assertCount(0, $classe->getQuestion());
     }
 
-    public function testAddGetMatieres()
+    public function testAddGetMatieres(): void
     {
         $classe = new Classe();
         $matiere = new Matiere();
@@ -61,7 +61,7 @@ class ClasseTest extends TestCase
         $this->assertContains($matiere, $classe->getMatieres());
     }
 
-    public function testRemoveMatiere()
+    public function testRemoveMatiere(): void
     {
         $classe = new Classe();
         $matiere = new Matiere();
@@ -70,7 +70,7 @@ class ClasseTest extends TestCase
         $this->assertCount(0, $classe->getMatieres());
     }
 
-    public function testGetSetNiveau()
+    public function testGetSetNiveau(): void
     {
         $classe = new Classe();
         $niveau = new Niveau();
@@ -78,7 +78,7 @@ class ClasseTest extends TestCase
         $this->assertEquals($niveau, $classe->getNiveau());
     }
 
-    public function testAddGetProfesseurs()
+    public function testAddGetProfesseurs(): void
     {
         $classe = new Classe();
         $professeur = new Professeur();
@@ -87,7 +87,7 @@ class ClasseTest extends TestCase
         $this->assertContains($professeur, $classe->getProfesseurs());
     }
 
-    public function testRemoveProfesseur()
+    public function testRemoveProfesseur(): void
     {
         $classe = new Classe();
         $professeur = new Professeur();

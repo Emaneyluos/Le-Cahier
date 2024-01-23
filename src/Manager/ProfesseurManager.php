@@ -26,7 +26,7 @@ class ProfesseurManager
         ProfesseurRepository $professeurRepository
     ) {
         $this->professeurFactory = $professeurFactory;
-        $this->ProfesseurRepository = $professeurRepository;
+        $this->professeurRepository = $professeurRepository;
     }
 
     /**
@@ -47,7 +47,7 @@ class ProfesseurManager
      */
     public function edit(Professeur $professeur, ?FormInterface $form = null): Professeur
     {
-        $this->ProfesseurRepository->save($this->professeurFactory->edit($professeur, $form), true);
+        $this->professeurRepository->save($this->professeurFactory->edit($professeur, $form), true);
         return $professeur;
     }
 
@@ -57,7 +57,7 @@ class ProfesseurManager
      */
     public function update(Professeur $professeur): Professeur
     {
-        $this->ProfesseurRepository->save($professeur, true);
+        $this->professeurRepository->save($professeur, true);
         return $professeur;
     }
 

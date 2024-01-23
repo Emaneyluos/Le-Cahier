@@ -17,9 +17,9 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class AppFixtures extends Fixture
 {
-    private $entityManager; // Create a private property
+    protected EntityManagerInterface $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager) // Add the constructor
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }

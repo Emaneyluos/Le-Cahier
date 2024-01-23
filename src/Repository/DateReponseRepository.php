@@ -21,6 +21,24 @@ class DateReponseRepository extends ServiceEntityRepository
         parent::__construct($registry, DateReponse::class);
     }
 
+    public function save(DateReponse $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function delete(DateReponse $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 //    /**
 //     * @return DateReponse[] Returns an array of DateReponse objects
 //     */

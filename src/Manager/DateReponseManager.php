@@ -26,7 +26,7 @@ class DateReponseManager
         DateReponseRepository $dateReponseRepository
     ) {
         $this->dateReponseFactory = $dateReponseFactory;
-        $this->DateReponseRepository = $dateReponseRepository;
+        $this->dateReponseRepository = $dateReponseRepository;
     }
 
     /**
@@ -47,7 +47,7 @@ class DateReponseManager
      */
     public function edit(DateReponse $dateReponse, ?FormInterface $form = null): DateReponse
     {
-        $this->DateReponseRepository->save($this->dateReponseFactory->edit($dateReponse, $form), true);
+        $this->dateReponseRepository->save($this->dateReponseFactory->edit($dateReponse, $form), true);
         return $dateReponse;
     }
 
@@ -57,7 +57,7 @@ class DateReponseManager
      */
     public function update(DateReponse $dateReponse): DateReponse
     {
-        $this->DateReponseRepository->save($dateReponse, true);
+        $this->dateReponseRepository->save($dateReponse, true);
         return $dateReponse;
     }
 

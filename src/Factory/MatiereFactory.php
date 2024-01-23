@@ -27,7 +27,7 @@ class MatiereFactory
      * @return Matiere
      * @throws \Exception
      */
-    public function create(Matiere $matiere, FormInterface $form)
+    public function create(Matiere $matiere, FormInterface $form): Matiere
     {
 
         return $this->edit($matiere, $form);
@@ -39,12 +39,12 @@ class MatiereFactory
      * @return Matiere
      * @throws \Exception
      */
-    public function edit(Matiere $matiere, ?FormInterface $form)
+    public function edit(Matiere $matiere, ?FormInterface $form): Matiere
     {
         return $matiere;
     }
 
-    public function delete(Matiere $matiere)
+    public function delete(Matiere $matiere): void
     {
         $this->matiereRepository->delete($matiere);
     }

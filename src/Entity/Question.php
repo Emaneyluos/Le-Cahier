@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\QuestionRepository;
-use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -178,7 +178,7 @@ class Question
     }
 
     #[Groups(['question:read'])]
-    public function getLastDateReponse(): ?DateTime
+    public function getLastDateReponse(): ?DateTimeInterface
     {
         $dateReponses = $this->getDateReponses()->toArray();
         if (empty($dateReponses)) {

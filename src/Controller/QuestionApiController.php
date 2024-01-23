@@ -19,7 +19,9 @@ class QuestionApiController extends AbstractController
      * This api return the Question by Classse.
      * Order by date of creation and last response.
      *
-     * @param Class classe
+     * @param int $classeId
+     * @param EntityManagerInterface $entityManager
+     * @param SerializerInterface $serializer
      * @return JsonResponse
      */
     #[Route('/api/question/{classeId}', name: 'question_api', methods: ['GET'])]

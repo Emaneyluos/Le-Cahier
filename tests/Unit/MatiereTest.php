@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class MatiereTest extends TestCase
 {
-    public function testGettersAndSetters()
+    public function testGettersAndSetters(): void
     {
         $matiere = new Matiere();
         $matiere->setNom('Math');
@@ -19,7 +19,7 @@ class MatiereTest extends TestCase
         $this->assertNull($matiere->getId());
     }
 
-    public function testAddAndRemoveClasse()
+    public function testAddAndRemoveClasse(): void
     {
         $matiere = new Matiere();
         $classe = new Classe();
@@ -29,7 +29,7 @@ class MatiereTest extends TestCase
         $this->assertFalse($matiere->getClasse()->contains($classe));
     }
 
-    public function testAddAndRemoveProfesseur()
+    public function testAddAndRemoveProfesseur(): void
     {
         $matiere = new Matiere();
         $professeur = new Professeur();
@@ -41,7 +41,7 @@ class MatiereTest extends TestCase
         $this->assertNull($professeur->getMatiere());
     }
 
-    public function testAddAndRemoveQuestion()
+    public function testAddAndRemoveQuestion(): void
     {
         $matiere = new Matiere();
         $question = new Question();
@@ -53,7 +53,7 @@ class MatiereTest extends TestCase
         $this->assertNull($question->getMatiere());
     }
 
-    public function testToString()
+    public function testToString(): void
     {
         $matiere = new Matiere();
         $matiere->setNom('Math');

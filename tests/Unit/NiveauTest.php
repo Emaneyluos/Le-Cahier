@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class NiveauTest extends TestCase
 {
-    public function testGettersAndSetters()
+    public function testGettersAndSetters(): void
     {
         $niveau = new Niveau();
 
@@ -24,7 +24,7 @@ class NiveauTest extends TestCase
         $this->assertEquals($position, $niveau->getPosition());
     }
 
-    public function testAddRemoveClass()
+    public function testAddRemoveClass(): void
     {
         $niveau = new Niveau();
         $classe = new Classe();
@@ -38,7 +38,7 @@ class NiveauTest extends TestCase
         $this->assertNull($classe->getNiveau());
     }
 
-    public function testToString()
+    public function testToString(): void
     {
         $niveau = new Niveau();
         $niveau->setNom('Test');

@@ -27,7 +27,7 @@ class DateReponseFactory
      * @return DateReponse
      * @throws \Exception
      */
-    public function create(DateReponse $dateReponse, FormInterface $form)
+    public function create(DateReponse $dateReponse, FormInterface $form): DateReponse
     {
 
         return $this->edit($dateReponse, $form);
@@ -39,12 +39,12 @@ class DateReponseFactory
      * @return DateReponse
      * @throws \Exception
      */
-    public function edit(DateReponse $dateReponse, ?FormInterface $form)
+    public function edit(DateReponse $dateReponse, ?FormInterface $form): DateReponse
     {
         return $dateReponse;
     }
 
-    public function delete(DateReponse $dateReponse)
+    public function delete(DateReponse $dateReponse): void
     {
         $this->dateReponseRepository->delete($dateReponse);
     }

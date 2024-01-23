@@ -11,9 +11,9 @@ use Symfony\Component\Form\FormInterface;
 class QuestionFactory
 {
     /** @var QuestionRepository $questionRepository */
-    protected $questionRepository;
+    protected QuestionRepository $questionRepository;
 
-    protected $professeurRepository;
+    protected ProfesseurRepository $professeurRepository;
 
     /**
      * QuestionFactory constructor.
@@ -64,7 +64,7 @@ class QuestionFactory
         return $question;
     }
 
-    public function delete(Question $question)
+    public function delete(Question $question): void
     {
         $this->questionRepository->delete($question);
     }

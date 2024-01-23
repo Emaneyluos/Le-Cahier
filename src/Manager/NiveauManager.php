@@ -11,12 +11,12 @@ use Doctrine\ORM\EntityManagerInterface;
 class NiveauManager
 {
     /** @var NiveauFactory $niveauFactory */
-    protected $niveauFactory;
+    protected NiveauFactory $niveauFactory;
 
     /** @var NiveauRepository $niveauRepository */
-    protected $niveauRepository;
+    protected NiveauRepository $niveauRepository;
 
-    protected $entityManager;
+    protected EntityManagerInterface $entityManager;
 
     /**
      * NiveauManager constructor.

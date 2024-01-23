@@ -14,7 +14,7 @@ use App\Manager\QuestionManager;
 
 class QuestionController extends AbstractController
 {
-    protected $questionManager;
+    protected QuestionManager $questionManager;
 
 
     public function __construct(QuestionManager $questionManager)

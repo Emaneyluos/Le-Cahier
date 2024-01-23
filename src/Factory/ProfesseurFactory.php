@@ -49,7 +49,7 @@ class ProfesseurFactory
         return $professeur;
     }
 
-    public function delete(Professeur $professeur)
+    public function delete(Professeur $professeur): void
     {
         $this->professeurRepository->delete($professeur);
     }

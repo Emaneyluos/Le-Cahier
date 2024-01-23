@@ -27,7 +27,7 @@ class ClasseFactory
      * @return Classe
      * @throws \Exception
      */
-    public function create(Classe $classe, FormInterface $form)
+    public function create(Classe $classe, FormInterface $form): Classe
     {
 
         return $this->edit($classe, $form);
@@ -39,12 +39,12 @@ class ClasseFactory
      * @return Classe
      * @throws \Exception
      */
-    public function edit(Classe $classe, ?FormInterface $form)
+    public function edit(Classe $classe, ?FormInterface $form): Classe
     {
         return $classe;
     }
 
-    public function delete(Classe $classe)
+    public function delete(Classe $classe): void
     {
         $this->classeRepository->delete($classe);
     }

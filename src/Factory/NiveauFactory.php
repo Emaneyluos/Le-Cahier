@@ -34,7 +34,7 @@ class NiveauFactory
         $lastposition = count($allNiveau);
         $position = $niveau->getPosition();
 
-        if ($position < 1 || $position === null) {
+        if ($position < 1 || $position == null) {
             $position = $lastposition + 1;
         } elseif ($position >= $lastposition + 1) {
             $niveau->setPosition($lastposition + 1);
@@ -82,7 +82,7 @@ class NiveauFactory
             return $niveau;
         }
 
-        if ($position < 1 || $position === null) {
+        if ($position < 1 || $position == null) {
             $niveau->setPosition($lastposition);
         } elseif (count($allNiveau) < $niveau->getPosition()) {
             $niveau->setPosition(count($allNiveau));
@@ -93,7 +93,7 @@ class NiveauFactory
         return $niveau;
     }
 
-    public function delete(Niveau $niveau)
+    public function delete(Niveau $niveau): Niveau
     {
         $allNiveau = $this->niveauRepository->findAll();
         $positionDeDepart = $niveau->getPosition();
@@ -103,7 +103,7 @@ class NiveauFactory
         return $niveau;
     }
 
-    private function decalerPositions($niveau, $positionDeDepart)
+    private function decalerPositions(Niveau $niveau, int $positionDeDepart): void
     {
         $nouvellePosition = $niveau->getPosition();
         $allNiveau = $this->niveauRepository->findAll();
@@ -141,7 +141,11 @@ class NiveauFactory
         }
     }
 
-    protected function trouverChiffreManquant($suite)
+    /**
+     * @param Array<int> $suite
+     * @return int
+     */
+    protected function trouverChiffreManquant(array $suite): int
     {
         $n = count($suite) + 1; // Taille attendue de la suite
         $sommeAttendue = ($n * ($n + 1)) / 2;

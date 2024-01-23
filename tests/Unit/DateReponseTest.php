@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class DateReponseTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $dateReponse = new DateReponse();
         $this->assertInstanceOf(DateReponse::class, $dateReponse);

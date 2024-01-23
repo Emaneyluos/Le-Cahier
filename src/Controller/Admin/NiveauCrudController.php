@@ -12,7 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class NiveauCrudController extends AbstractCrudController
 {
-    protected $niveauManager;
+    protected NiveauManager $niveauManager;
 
     public function __construct(
         NiveauManager $niveauManager
@@ -42,16 +42,31 @@ class NiveauCrudController extends AbstractCrudController
     }
 
 
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @param Niveau $entityInstance
+     * @return void
+     */
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         $this->niveauManager->create($entityInstance);
     }
 
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @param Niveau $entityInstance
+     * @return void
+     */
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         $this->niveauManager->edit($entityInstance);
     }
 
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @param Niveau $entityInstance
+     * @return void
+     */
     public function deleteEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         $this->niveauManager->delete($entityInstance);

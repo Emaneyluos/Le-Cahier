@@ -26,7 +26,7 @@ class ClasseManager
         ClasseRepository $classeRepository
     ) {
         $this->classeFactory = $classeFactory;
-        $this->ClasseRepository = $classeRepository;
+        $this->classeRepository = $classeRepository;
     }
 
     /**
@@ -47,7 +47,7 @@ class ClasseManager
      */
     public function edit(Classe $classe, ?FormInterface $form = null): Classe
     {
-        $this->ClasseRepository->save($this->classeFactory->edit($classe, $form), true);
+        $this->classeRepository->save($this->classeFactory->edit($classe, $form), true);
         return $classe;
     }
 
@@ -57,7 +57,7 @@ class ClasseManager
      */
     public function update(Classe $classe): Classe
     {
-        $this->ClasseRepository->save($classe, true);
+        $this->classeRepository->save($classe, true);
         return $classe;
     }
 

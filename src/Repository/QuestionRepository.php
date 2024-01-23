@@ -29,6 +29,15 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
+    public function delete(Question $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 //    /**
 //     * @return Question[] Returns an array of Question objects
 //     */
