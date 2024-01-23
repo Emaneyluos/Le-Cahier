@@ -60,20 +60,23 @@ php:  ## List all php commands or pass the parameter "c=" to run a given command
 	@$(PHP) $(c)
 
 ## —— Testing 🧪 ———————————————————————————————————————————————————————————————
-testing: unit phpcs
+testing: unit phpcs phpstan
 
 unit: ## Lunch unit tests
 	@$(eval c ?=)
 	@$(PHP) $(c) bin/phpunit
 
-phpcs: ## Lunch PHPCodeSniffer. It looking at the code for PSR12 standard
+phpcs: ## Lunch PHPCodeSniffer. It detect violations of a defined coding standard PSR12
 	@$(eval c ?=)
 	@$(PHP) $(c) vendor/squizlabs/php_codesniffer/bin/phpcs src/ tests/
 
-phpcbf: ## Lunch PHPCodeSniffer. It looking at the code for PSR12 standard
+phpcbf: ## Lunch PHPCBF. It's a script for automatically correct coding standard violations 
 	@$(eval c ?=)
 	@$(PHP) $(c) vendor/squizlabs/php_codesniffer/bin/phpcbf src/ tests/
 
+phpstan:
+	@$(eval c ?=)
+	@$(PHP) $(c) vendor/bin/phpstan analyse
 
 
 ## —— Database 💾 ———————————————————————————————————————————————————————————————
