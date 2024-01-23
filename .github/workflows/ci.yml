@@ -46,19 +46,21 @@ jobs:
         run: curl -vk -o /dev/null https://localhost
       -
         name: Create test database
-        if: false # Remove this line if Doctrine ORM is installed
         run: docker compose exec -T php bin/console -e test doctrine:database:create
       -
         name: Run migrations
-        if: false # Remove this line if Doctrine Migrations is installed
         run: docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
       -
         name: Run PHPUnit
-        if: false # Remove this line if PHPUnit is installed
         run: docker compose exec -T php bin/phpunit
       -
+        name: Run PHPCodeSniffer
+        run: docker compose exec -T php vendor/squizlabs/php_codesniffer/bin/phpcs src/ tests/
+      -
+        name: Run PHPStan
+        run: docker compose exec -T php vendor/bin/phpstan analyse
+      -
         name: Doctrine Schema Validator
-        if: false # Remove this line if Doctrine ORM is installed
         run: docker compose exec -T php bin/console -e test doctrine:schema:validate
   lint:
     name: Docker Lint
