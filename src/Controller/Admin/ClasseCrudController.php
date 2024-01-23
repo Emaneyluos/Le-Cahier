@@ -14,7 +14,7 @@ class ClasseCrudController extends AbstractCrudController
         return Classe::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -22,6 +22,4 @@ class ClasseCrudController extends AbstractCrudController
             AssociationField::new('niveau')->setDefaultColumns('col-md-6 col-xxl-5'),
         ];
     }
-
-
 }

@@ -15,17 +15,19 @@ use App\Entity\Classe;
 
 class QuestionApiController extends AbstractController
 {
-
     /**
      * This api return the Question by Classse.
      * Order by date of creation and last response.
      *
-     * @param Class classe 
+     * @param Class classe
      * @return JsonResponse
      */
     #[Route('/api/question/{classeId}', name: 'question_api', methods: ['GET'])]
-    public function getQuestionByClasse(int $classeId, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
-    {
+    public function getQuestionByClasse(
+        int $classeId,
+        EntityManagerInterface $entityManager,
+        SerializerInterface $serializer
+    ): JsonResponse {
         $repository = $entityManager->getRepository(Classe::class);
         $classe = $repository->find($classeId);
 
@@ -50,9 +52,8 @@ class QuestionApiController extends AbstractController
         $json = $serializer->serialize($questions, 'json', [
             'groups' => 'question:read'
         ]);
-        
-        
+
+
         return new JsonResponse($json, Response::HTTP_OK, [], true);
     }
 }
-        

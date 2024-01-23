@@ -6,11 +6,11 @@ use App\Entity\Professeur;
 use App\Repository\ProfesseurRepository;
 use Symfony\Component\Form\FormInterface;
 
-class ProfesseurFactory {
-
+class ProfesseurFactory
+{
     /** @var ProfesseurRepository $professeurRepository */
     protected $professeurRepository;
-    
+
     /**
      * ProfesseurFactory constructor.
      * @param ProfesseurRepository $professeurRepository
@@ -27,7 +27,8 @@ class ProfesseurFactory {
      * @return Professeur
      * @throws \Exception
      */
-    public function create(Professeur $professeur, FormInterface $form) {
+    public function create(Professeur $professeur, FormInterface $form)
+    {
 
         // Vérifier si le code n'est pas déjà utilisé
         // Vérifier si le code n'est pas déjà utilisé

@@ -7,8 +7,8 @@ use App\Factory\QuestionFactory;
 use App\Repository\QuestionRepository;
 use Symfony\Component\Form\FormInterface;
 
-class QuestionManager {
-
+class QuestionManager
+{
     /** @var QuestionFactory $questionFactory */
     protected $questionFactory;
 
@@ -17,16 +17,14 @@ class QuestionManager {
 
     /**
      * QuestionManager constructor.
-     * 
+     *
      * @param QuestionFactory $questionFactory
      * @param QuestionRepository $questionRepository
      */
-    public function __construct
-    (
+    public function __construct(
         QuestionFactory $questionFactory,
         QuestionRepository $questionRepository
-    )
-    {
+    ) {
         $this->questionFactory = $questionFactory;
         $this->questionRepository = $questionRepository;
     }
@@ -49,7 +47,7 @@ class QuestionManager {
      * @param FormInterface|null $form
      * @return Question
      */
-    public function edit(Question $question, ?FormInterface $form = null):  Question
+    public function edit(Question $question, ?FormInterface $form = null): Question
     {
         $this->questionRepository->save($this->questionFactory->edit($question, $form), true);
         return $question;

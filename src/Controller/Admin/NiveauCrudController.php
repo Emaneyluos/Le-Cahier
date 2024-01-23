@@ -12,8 +12,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class NiveauCrudController extends AbstractCrudController
 {
-
-
     protected $niveauManager;
 
     public function __construct(
@@ -27,7 +25,7 @@ class NiveauCrudController extends AbstractCrudController
         return Niveau::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -36,7 +34,7 @@ class NiveauCrudController extends AbstractCrudController
         ];
     }
 
-    //Configurer le tri d'affichage 
+    //Configurer le tri d'affichage
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
@@ -45,12 +43,12 @@ class NiveauCrudController extends AbstractCrudController
 
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    { 
+    {
         $this->niveauManager->create($entityInstance);
     }
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {  
+    {
         $this->niveauManager->edit($entityInstance);
     }
 

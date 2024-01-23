@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class DateReponseTest extends TestCase
 {
-
     public function testConstructor()
     {
         $dateReponse = new DateReponse();

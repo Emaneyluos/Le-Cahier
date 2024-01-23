@@ -19,7 +19,7 @@ class QuestionCrudController extends AbstractCrudController
         return Question::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [

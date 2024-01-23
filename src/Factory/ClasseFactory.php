@@ -6,11 +6,11 @@ use App\Entity\Classe;
 use App\Repository\ClasseRepository;
 use Symfony\Component\Form\FormInterface;
 
-class ClasseFactory {
-
+class ClasseFactory
+{
     /** @var ClasseRepository $classeRepository */
     protected $classeRepository;
-    
+
     /**
      * ClasseFactory constructor.
      * @param ClasseRepository $classeRepository
@@ -27,7 +27,8 @@ class ClasseFactory {
      * @return Classe
      * @throws \Exception
      */
-    public function create(Classe $classe, FormInterface $form) {
+    public function create(Classe $classe, FormInterface $form)
+    {
 
         return $this->edit($classe, $form);
     }

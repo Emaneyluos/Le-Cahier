@@ -15,8 +15,8 @@ use App\Manager\QuestionManager;
 class QuestionController extends AbstractController
 {
     protected $questionManager;
-    
-    
+
+
     public function __construct(QuestionManager $questionManager)
     {
         $this->questionManager = $questionManager;
@@ -30,7 +30,6 @@ class QuestionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $code = $form->get("codeProfesseur")->getData();
             $professeur = $entityManager->getRepository(Professeur::class)->findOneBy(['code' => $code]);
             if ($professeur == null) {
@@ -48,7 +47,7 @@ class QuestionController extends AbstractController
                     'form' => $form->createView(),
                 ]);
             }
-            
+
             if ($question->getDateValidite() != null && $question->getDateValidite() < new \DateTime()) {
                 $this->addFlash('error', 'La date de validité doit être supérieure à la date du jour');
                 return $this->render('question/new.html.twig', [
@@ -59,7 +58,7 @@ class QuestionController extends AbstractController
 
             $question->setClasse($question->getClasse());
 
-            $this->questionManager->create($question,$form);
+            $this->questionManager->create($question, $form);
 
             $this->addFlash('success', 'Question ajoutée avec succès');
             return $this->redirectToRoute('app_home');

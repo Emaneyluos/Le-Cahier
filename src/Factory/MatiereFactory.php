@@ -6,11 +6,11 @@ use App\Entity\Matiere;
 use App\Repository\MatiereRepository;
 use Symfony\Component\Form\FormInterface;
 
-class MatiereFactory {
-
+class MatiereFactory
+{
     /** @var MatiereRepository $matiereRepository */
     protected $matiereRepository;
-    
+
     /**
      * MatiereFactory constructor.
      * @param MatiereRepository $matiereRepository
@@ -27,7 +27,8 @@ class MatiereFactory {
      * @return Matiere
      * @throws \Exception
      */
-    public function create(Matiere $matiere, FormInterface $form) {
+    public function create(Matiere $matiere, FormInterface $form)
+    {
 
         return $this->edit($matiere, $form);
     }

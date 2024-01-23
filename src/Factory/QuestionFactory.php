@@ -8,13 +8,13 @@ use App\Repository\QuestionRepository;
 use App\Repository\ProfesseurRepository;
 use Symfony\Component\Form\FormInterface;
 
-class QuestionFactory {
-
+class QuestionFactory
+{
     /** @var QuestionRepository $questionRepository */
     protected $questionRepository;
 
     protected $professeurRepository;
-    
+
     /**
      * QuestionFactory constructor.
      * @param QuestionRepository $questionRepository
@@ -33,10 +33,11 @@ class QuestionFactory {
      * @return Question
      * @throws \Exception
      */
-    public function create(Question $question, FormInterface $form) {
+    public function create(Question $question, FormInterface $form)
+    {
 
         $today = new \DateTime();
-        // $today->setDate('today') 
+        // $today->setDate('today')
 
         $question->setCreeeLe($today);
         $question->setSignalement(false);
@@ -45,7 +46,7 @@ class QuestionFactory {
         $professeur = $this->professeurRepository->findOneBy(['code' => $form->get("codeProfesseur")->getData()]);
         $question->setProfesseur($professeur);
         $question->setMatiere($professeur->getMatiere());
-        
+
         return $this->edit($question, $form);
     }
 

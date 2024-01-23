@@ -7,8 +7,8 @@ use App\Factory\DateReponseFactory;
 use App\Repository\DateReponseRepository;
 use Symfony\Component\Form\FormInterface;
 
-class DateReponseManager {
-
+class DateReponseManager
+{
     /** @var DateReponseFactory $dateReponseFactory */
     protected $dateReponseFactory;
 
@@ -17,16 +17,14 @@ class DateReponseManager {
 
     /**
      * DateReponseManager constructor.
-     * 
+     *
      * @param DateReponseFactory $dateReponseFactory
      * @param DateReponseRepository $dateReponseRepository
      */
-    public function __construct
-    (
+    public function __construct(
         DateReponseFactory $dateReponseFactory,
         DateReponseRepository $dateReponseRepository
-    )
-    {
+    ) {
         $this->dateReponseFactory = $dateReponseFactory;
         $this->DateReponseRepository = $dateReponseRepository;
     }
@@ -47,7 +45,7 @@ class DateReponseManager {
      * @param FormInterface|null $form
      * @return DateReponse
      */
-    public function edit(DateReponse $dateReponse, ?FormInterface $form = null):  DateReponse
+    public function edit(DateReponse $dateReponse, ?FormInterface $form = null): DateReponse
     {
         $this->DateReponseRepository->save($this->dateReponseFactory->edit($dateReponse, $form), true);
         return $dateReponse;

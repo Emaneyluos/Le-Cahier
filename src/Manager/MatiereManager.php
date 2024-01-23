@@ -7,8 +7,8 @@ use App\Factory\MatiereFactory;
 use App\Repository\MatiereRepository;
 use Symfony\Component\Form\FormInterface;
 
-class MatiereManager {
-
+class MatiereManager
+{
     /** @var MatiereFactory $matiereFactory */
     protected $matiereFactory;
 
@@ -17,16 +17,14 @@ class MatiereManager {
 
     /**
      * MatiereManager constructor.
-     * 
+     *
      * @param MatiereFactory $matiereFactory
      * @param MatiereRepository $matiereRepository
      */
-    public function __construct
-    (
+    public function __construct(
         MatiereFactory $matiereFactory,
         MatiereRepository $matiereRepository
-    )
-    {
+    ) {
         $this->matiereFactory = $matiereFactory;
         $this->MatiereRepository = $matiereRepository;
     }
@@ -47,7 +45,7 @@ class MatiereManager {
      * @param FormInterface|null $form
      * @return Matiere
      */
-    public function edit(Matiere $matiere, ?FormInterface $form = null):  Matiere
+    public function edit(Matiere $matiere, ?FormInterface $form = null): Matiere
     {
         $this->MatiereRepository->save($this->matiereFactory->edit($matiere, $form), true);
         return $matiere;

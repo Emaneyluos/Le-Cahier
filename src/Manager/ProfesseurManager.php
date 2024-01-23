@@ -7,8 +7,8 @@ use App\Factory\ProfesseurFactory;
 use App\Repository\ProfesseurRepository;
 use Symfony\Component\Form\FormInterface;
 
-class ProfesseurManager {
-
+class ProfesseurManager
+{
     /** @var ProfesseurFactory $professeurFactory */
     protected $professeurFactory;
 
@@ -17,16 +17,14 @@ class ProfesseurManager {
 
     /**
      * ProfesseurManager constructor.
-     * 
+     *
      * @param ProfesseurFactory $professeurFactory
      * @param ProfesseurRepository $professeurRepository
      */
-    public function __construct
-    (
+    public function __construct(
         ProfesseurFactory $professeurFactory,
         ProfesseurRepository $professeurRepository
-    )
-    {
+    ) {
         $this->professeurFactory = $professeurFactory;
         $this->ProfesseurRepository = $professeurRepository;
     }
@@ -47,7 +45,7 @@ class ProfesseurManager {
      * @param FormInterface|null $form
      * @return Professeur
      */
-    public function edit(Professeur $professeur, ?FormInterface $form = null):  Professeur
+    public function edit(Professeur $professeur, ?FormInterface $form = null): Professeur
     {
         $this->ProfesseurRepository->save($this->professeurFactory->edit($professeur, $form), true);
         return $professeur;

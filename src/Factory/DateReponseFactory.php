@@ -6,11 +6,11 @@ use App\Entity\DateReponse;
 use App\Repository\DateReponseRepository;
 use Symfony\Component\Form\FormInterface;
 
-class DateReponseFactory {
-
+class DateReponseFactory
+{
     /** @var DateReponseRepository $dateReponseRepository */
     protected $dateReponseRepository;
-    
+
     /**
      * DateReponseFactory constructor.
      * @param DateReponseRepository $dateReponseRepository
@@ -27,7 +27,8 @@ class DateReponseFactory {
      * @return DateReponse
      * @throws \Exception
      */
-    public function create(DateReponse $dateReponse, FormInterface $form) {
+    public function create(DateReponse $dateReponse, FormInterface $form)
+    {
 
         return $this->edit($dateReponse, $form);
     }

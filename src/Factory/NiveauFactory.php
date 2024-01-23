@@ -6,12 +6,11 @@ use App\Entity\Niveau;
 use App\Repository\NiveauRepository;
 use Symfony\Component\Form\FormInterface;
 
-
-class NiveauFactory {
-
+class NiveauFactory
+{
     /** @var NiveauRepository $niveauRepository */
     protected $niveauRepository;
-    
+
     /**
      * NiveauFactory constructor.
      * @param NiveauRepository $niveauRepository
@@ -28,7 +27,8 @@ class NiveauFactory {
      * @return Niveau
      * @throws \Exception
      */
-    public function create(Niveau $niveau, ?FormInterface $form) {
+    public function create(Niveau $niveau, ?FormInterface $form)
+    {
 
         $allNiveau = $this->niveauRepository->findAll();
         $lastposition = count($allNiveau);
@@ -54,12 +54,12 @@ class NiveauFactory {
      */
     public function edit(Niveau $niveau, ?FormInterface $form, bool $create = false): Niveau
     {
-        
+
         if ($create) {
             return $niveau;
         }
 
-        
+
         $allNiveau = $this->niveauRepository->findAll();
 
         if (count($allNiveau) === 0) {
@@ -89,7 +89,7 @@ class NiveauFactory {
         }
 
         $this->decalerPositions($niveau, $previousPosition);
-        
+
         return $niveau;
     }
 
@@ -117,7 +117,10 @@ class NiveauFactory {
                 if ($otherNiveau === $niveau) {
                     continue;
                 }
-                if ($otherNiveau->getPosition() > $positionDeDepart && $otherNiveau->getPosition() <= $nouvellePosition) {
+                if (
+                    $otherNiveau->getPosition() > $positionDeDepart
+                    && $otherNiveau->getPosition() <= $nouvellePosition
+                ) {
                     $otherNiveau->setPosition($otherNiveau->getPosition() - 1);
                     $this->niveauRepository->save($otherNiveau, true);
                 }
@@ -127,20 +130,23 @@ class NiveauFactory {
                 if ($otherNiveau == $niveau) {
                     continue;
                 }
-                if ($otherNiveau->getPosition() < $positionDeDepart && $otherNiveau->getPosition() >= $nouvellePosition) {
+                if (
+                    $otherNiveau->getPosition() < $positionDeDepart
+                    && $otherNiveau->getPosition() >= $nouvellePosition
+                ) {
                     $otherNiveau->setPosition($otherNiveau->getPosition() + 1);
                     $this->niveauRepository->save($otherNiveau, true);
                 }
             }
         }
-
     }
 
-    function trouverChiffreManquant($suite) {
+    protected function trouverChiffreManquant($suite)
+    {
         $n = count($suite) + 1; // Taille attendue de la suite
         $sommeAttendue = ($n * ($n + 1)) / 2;
         $sommeReelle = array_sum($suite);
-    
+
         return $sommeAttendue - $sommeReelle;
     }
 }

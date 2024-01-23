@@ -7,8 +7,8 @@ use App\Factory\ClasseFactory;
 use App\Repository\ClasseRepository;
 use Symfony\Component\Form\FormInterface;
 
-class ClasseManager {
-
+class ClasseManager
+{
     /** @var ClasseFactory $classeFactory */
     protected $classeFactory;
 
@@ -17,16 +17,14 @@ class ClasseManager {
 
     /**
      * ClasseManager constructor.
-     * 
+     *
      * @param ClasseFactory $classeFactory
      * @param ClasseRepository $classeRepository
      */
-    public function __construct
-    (
+    public function __construct(
         ClasseFactory $classeFactory,
         ClasseRepository $classeRepository
-    )
-    {
+    ) {
         $this->classeFactory = $classeFactory;
         $this->ClasseRepository = $classeRepository;
     }
@@ -47,7 +45,7 @@ class ClasseManager {
      * @param FormInterface|null $form
      * @return Classe
      */
-    public function edit(Classe $classe, ?FormInterface $form = null):  Classe
+    public function edit(Classe $classe, ?FormInterface $form = null): Classe
     {
         $this->ClasseRepository->save($this->classeFactory->edit($classe, $form), true);
         return $classe;

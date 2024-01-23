@@ -10,7 +10,9 @@ use App\Entity\Matiere;
 use App\Entity\Professeur;
 use App\Entity\Question;
 use App\Entity\DateReponse;
-use Doctrine\ORM\EntityManagerInterface; // Import the EntityManagerInterface class
+use Doctrine\ORM\EntityManagerInterface;
+
+// Import the EntityManagerInterface class
 
 
 class AppFixtures extends Fixture
@@ -21,7 +23,7 @@ class AppFixtures extends Fixture
     {
         $this->entityManager = $entityManager;
     }
-    
+
     public function load(ObjectManager $manager): void
     {
 
@@ -46,7 +48,7 @@ class AppFixtures extends Fixture
             ->setPosition(4);
         $manager->persist($niveau3);
 
-        
+
         $classes = [];
 
         $classe6A = new Classe();
@@ -160,7 +162,7 @@ class AppFixtures extends Fixture
         $anglais->setNom('Anglais');
         $manager->persist($anglais);
 
-        
+
         $profMaths = new Professeur();
         $profMaths
             ->setNom('Mr. Dupont')
@@ -184,7 +186,7 @@ class AppFixtures extends Fixture
             $profHistoire->addClasse($classes[$numeroClasse]);
         }
         $manager->persist($profHistoire);
-        
+
         $profGeographie = new Professeur();
         $profGeographie
             ->setNom('Mme. Martin')
@@ -231,7 +233,7 @@ class AppFixtures extends Fixture
             $numeroClasse = rand(0, $nombreClasses - 1);
             $profAnglais->addClasse($classes[$numeroClasse]);
         }
-        $manager->persist($profAnglais);       
+        $manager->persist($profAnglais);
 
         $professeursParMatiere = [
             $maths->getNom() => $profMaths,
@@ -241,7 +243,7 @@ class AppFixtures extends Fixture
             $francais->getNom() => $profFrancais,
             $anglais->getNom() => $profAnglais,
         ];
-    
+
         // Create questions for each class and subject
         foreach ($classes as $classe) {
             foreach ([$maths, $histoire, $geographie, $sciences, $francais, $anglais] as $matiere) {
@@ -268,28 +270,23 @@ class AppFixtures extends Fixture
                     $question
                         ->setQuestion('Quelle est la racine carrée de 4 ?')
                         ->setReponse('2');
-                }
-                elseif ($matiere === $histoire) {
+                } elseif ($matiere === $histoire) {
                     $question
                         ->setQuestion('Quand a eu lieu la révolution française ?')
                         ->setReponse('1789');
-                }
-                elseif ($matiere === $geographie) {
+                } elseif ($matiere === $geographie) {
                     $question
                         ->setQuestion('Quelle est la capitale de la France ?')
                         ->setReponse('Paris');
-                }
-                elseif ($matiere === $sciences) {
+                } elseif ($matiere === $sciences) {
                     $question
                         ->setQuestion('Quel est le symbole de l\'eau ?')
                         ->setReponse('H2O');
-                }
-                elseif ($matiere === $francais) {
+                } elseif ($matiere === $francais) {
                     $question
                         ->setQuestion('Quel est le pluriel de "cheval" ?')
                         ->setReponse('chevaux');
-                }
-                elseif ($matiere === $anglais) {
+                } elseif ($matiere === $anglais) {
                     $question
                         ->setQuestion('Comment dit-on "bonjour" en anglais ?')
                         ->setReponse('hello');
@@ -308,7 +305,6 @@ class AppFixtures extends Fixture
                 }
 
                 $manager->persist($question);
-
             }
         }
 

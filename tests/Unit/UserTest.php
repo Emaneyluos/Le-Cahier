@@ -10,7 +10,7 @@ class UserTest extends TestCase
     public function testGetId(): void
     {
         $user = new User();
-        $this->assertNull( $user->getId());
+        $this->assertNull($user->getId());
     }
 
     public function testGetSetEmail(): void
@@ -44,5 +44,4 @@ class UserTest extends TestCase
         $user->setPassword($password);
         $this->assertEquals($password, $user->getPassword());
     }
-
 }

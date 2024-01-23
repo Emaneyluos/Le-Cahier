@@ -32,6 +32,5 @@ class HomeController extends AbstractController
             'niveaux' => $niveaux,
             'classeId' => $classeId,
         ]);
-
     }
 }

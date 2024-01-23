@@ -26,14 +26,12 @@ class DashboardController extends AbstractDashboardController
     {
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         return $this->redirect($adminUrlGenerator->setController(QuestionCrudController::class)->generateUrl());
-
     }
 
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
             ->setTitle('Le Cahier');
-
     }
 
     public function configureMenuItems(): iterable
@@ -43,8 +41,5 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Professeurs', 'fas fa-list', Professeur::class);
         yield MenuItem::linkToCrud('Niveaux', 'fas fa-list', Niveau::class);
         yield MenuItem::linkToCrud('Matières', 'fas fa-list', Matiere::class);
-
     }
-
-
 }
