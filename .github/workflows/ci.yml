@@ -50,8 +50,7 @@ jobs:
       -
         name: Run migrations
         run: |
-          docker compose exec -T php composer require symfony/maker-bundle
-          docker compose exec -T php bin/console -e test make:migration
+          docker compose exec -T php bin/console -e test doctrine:migrations:diff
           docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
       -
         name: Run PHPUnit
