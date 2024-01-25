@@ -1,15 +1,25 @@
-/* Base Styles */
+@font-face {
+    font-family: "Raleway";
+    src: url('../font/Raleway/Raleway-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "ArchivoBlack";
+    src: url('../font/Archivo_Black/ArchivoBlack-Regular.ttf') format('truetype');
+}
+
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #F2F8F4;
     color: #333;
     line-height: 1.6;
     margin: 0;
     padding: 0;
+    font-family: 'Raleway';
 }
 
 a {
-    color: #007bff;
     text-decoration: none;
     transition: color 0.3s ease; /* Smooth transition for link colors */
 }
@@ -17,4 +27,5 @@ a {
 main {
     padding: 2rem;
     padding-top: 4rem;
+    background-color: #F2F8F4;
 }

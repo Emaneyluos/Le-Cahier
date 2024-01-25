@@ -1,4 +1,3 @@
-/* Styles for Questions Container and Cards */
 .questions-container {
     display: flex;
     flex-direction: column;
@@ -6,7 +5,7 @@
 }
 
 .card {
-    background-color: white;
+    background-color: #FFFFFF;
     border-radius: 1rem;
     box-shadow: 0 0.4rem 0.8rem 0 rgba(0,0,0,0.2);
     width: 80%;
@@ -16,18 +15,21 @@
 
 /* Card Header Styles */
 .card-header {
-    background-color: #007bff;
+    background-color: #016B83;
     color: white;
     padding: 1.5rem;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
-    font-size: 1.25rem; /* Adjusted font size for better readability */
-    font-weight: bold;
+    font-family: 'ArchivoBlack';
+    font-size: 1.5rem; 
+    /* font-weight: bold; */
 }
 
 /* Card Body Styles */
 .card-body {
     padding: 1.5rem;
+    font-size: 1.2rem; /* Adjusted font size for better readability */
+
     line-height: 1.6;
     color: #333;
 }
@@ -48,7 +50,7 @@
 /* Sidebar Styles */
 .sidebar {
     width: 20%;
-    background-color: #2c3e50; 
+    background-color: #112331; 
     color: white;
     padding: 2rem;
     height: 100vh;
@@ -63,8 +65,10 @@
 .sidebar .niveau h3 {
     cursor: pointer; /* Change mouse cursor on hover */
     color: #f8f9fa;
+    font-size: 2rem;
+    font-weight: 400;
     padding: 1rem 0;
-    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.1);
+    border-bottom: 0.1rem solid #f8f9fa;
 }
 
 /* Class List Style */
@@ -72,8 +76,11 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+    cursor: pointer;
     max-height: 0; /* Set max-height to 0 to collapse the menu */
     overflow: hidden; /* Hide the overflow */
+    font-size: 1.3rem;
+    font-weight: 400;
     transition: max-height 0.3s ease; /* Smooth transition for the max-height */
 }
 
@@ -107,7 +114,7 @@
     color: white;
 }
 
-/* Style pour le bouton burger */
+/* TODO: retirer la croix quand le slide est sorti + ajout de JS quand on clique or slide pour fermer') */
 .burger {
     display: none; /* Hidden by default */
     cursor: pointer;
@@ -158,7 +165,7 @@
     }
 
     .sidebar.active {
-        width: 10rem; /* Adjust sidebar width to display */
+        width: 50%; /* Adjust sidebar width to display */
         padding: 2rem;
     }
 
