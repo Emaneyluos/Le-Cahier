@@ -1,0 +1,39 @@
+header {
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 1rem;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 1.5em; /* Taille de la police du logo */
+}
+
+#header_logo {
+    cursor: pointer;
+}
+
+.add-button button {
+    background-color: #4CAF50; /* Couleur du bouton + */
+    color: white; /* Couleur du texte du bouton + */
+    padding: 10px 20px; /* Espacement intérieur du bouton + */
+    border: none; /* Supprimez la bordure */
+    border-radius: 5px; /* Ajoutez des coins arrondis au bouton + */
+    cursor: pointer;
+    font-size: 1em; /* Taille de la police du bouton + */
+}
+
+.add-button button:hover {
+    background-color: #45a049; /* Couleur de survol du bouton + */
+}

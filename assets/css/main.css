@@ -14,30 +14,7 @@ a {
     transition: color 0.3s ease; /* Smooth transition for link colors */
 }
 
-/* Header Styles */
-header {
-    background: #333;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
+main {
+    padding: 2rem;
+    padding-top: 4rem;
 }
-
-header {
-    background: #333;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
-    position: fixed; /* Fix the header at the top */
-    top: 0; /* Align the header to the top */
-    left: 0; /* Align the header to the left */
-    width: 100%; /* Ensure the header stretches across the full width */
-    z-index: 1000; /* Make sure the header is above other content */
-}
-
-@media (max-width: 768px) {
-    header {
-        padding: 0.5rem;
-    }
-}
-
-

@@ -7,20 +7,18 @@
         {# Link to your main stylesheet #}
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('css/alert.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     {% endblock %}
     {% block javascripts %}
         {% block importmap %}{{ importmap('app') }}{% endblock %}
         <script src="{{ asset('js/alert.js') }}"></script>
+        <script src="{{ asset('js/header.js') }}"></script>
         {# Any global JavaScript files #}
     {% endblock %}
 </head>
 <body>
-    <header>
-        {# Your site's header content, like a navigation bar #}
-        <nav>
-            {# Navigation items #}
-        </nav>
-    </header>
+
+    {% include 'header.html.twig' %}
 
     <main>
     {% for flash_message in app.flashes('notice') %}
