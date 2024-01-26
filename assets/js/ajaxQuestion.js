@@ -26,9 +26,10 @@ function chargementQuestions(dataClasseId) {
                     container.innerHTML += `
                         <div class="card">
                             <div class="card-header">
-                                Question : ${question.question}
+                                ${question.matiere.nom}
                             </div>
                             <div class="card-body">
+                                <p>Question : ${question.question}</p>
                                 <p>Réponse : ${question.reponse}</p>
                                 <div class="groupe">
                                     <div class="groupe_date">
@@ -38,7 +39,6 @@ function chargementQuestions(dataClasseId) {
                                     </div>
                                     <div class="groupe_cours">
                                         <p class="text-muted">Par : ${question.professeur.nom}</p>
-                                        <p class="text-muted">Matière : ${question.matiere.nom}</p>
                                     </div>
                                 </div>
                             </div>

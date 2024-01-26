@@ -21,8 +21,9 @@ header {
     font-family: 'ArchivoBlack';
 }
 
-#header_logo {
+.logo {
     cursor: pointer;
+    display: flex;
 }
 
 .add-button button {
@@ -37,4 +38,38 @@ header {
 
 .add-button button:hover {
     background-color: #45a049; /* Couleur de survol du bouton + */
+}
+
+
+/* TODO: retirer la croix quand le slide est sorti + ajout de JS quand on clique or slide pour fermer') */
+.burger {
+    display: none; /* Hidden by default */
+    cursor: pointer;
+    padding-top: 5px;
+}
+
+.burger .line1, .burger .line2, .burger .line3 {
+    width: 30px;
+    height: 0.2rem;
+    background-color: white;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Transformations pour l'animation du burger en croix */
+.burger.active .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.burger.active .line2 {
+    opacity: 0;
+}
+.burger.active .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+
+@media (max-width: 768px) {
+   .burger {
+       display: block; /* Show the burger button */
+   }
 }

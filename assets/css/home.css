@@ -50,8 +50,10 @@
 /* Sidebar Styles */
 .sidebar {
     width: 20%;
-    background-color: #112331; 
-    color: white;
+    background-color: #F2F8F4; 
+    /* background-color: #112331;  */
+    
+    color: #112331;
     padding: 2rem;
     height: 100vh;
     overflow-y: auto;
@@ -61,47 +63,41 @@
     transition: width 0.3s ease; /* Smooth transition for sidebar width */
 }
 
+.sidebar .niveau * {
+    color: #112331;
+}
+
 /* Level Titles Style */
 .sidebar .niveau h3 {
     cursor: pointer; /* Change mouse cursor on hover */
-    color: #f8f9fa;
+    /* color: #f8f9fa; */
+    color: #112331;
     font-size: 2rem;
     font-weight: 400;
     padding: 1rem 0;
-    border-bottom: 0.1rem solid #f8f9fa;
+    border-bottom: 0.1rem solid #112331;
+    margin: 0;
+}
+.sidebar .niveau:first-child {
+    margin-top: 1rem;
 }
 
 /* Class List Style */
 .sidebar .niveau ul {
+    /* list-style-type: none; */
     list-style-type: none;
     padding: 0;
     margin: 0;
     cursor: pointer;
-    max-height: 0; /* Set max-height to 0 to collapse the menu */
-    overflow: hidden; /* Hide the overflow */
     font-size: 1.3rem;
     font-weight: 400;
     transition: max-height 0.3s ease; /* Smooth transition for the max-height */
 }
 
-.sidebar .niveau:hover ul {
-    max-height: 50rem; /* Max height on hover to reveal the menu */
-    /* Adjust this value based on the actual height needed */
-}
-
-.sidebar .niveau ul li {
-    opacity: 0; /* Start with li's invisible */
-    transition: opacity 0.2s ease 0.2s; /* Delay the transition to match the ul's max-height transition */
-}
-
-.sidebar .niveau:hover ul li {
-    opacity: 1; /* Make li's visible on hover */
-}
-
 /* Link Styles */
 .sidebar .niveau ul li a {
     text-decoration: none;
-    color: #f8f9fa;
+    /* color: #f8f9fa; */
     display: block;
     padding: 0.5rem 1rem;
     border-radius: 0.4rem;
@@ -110,38 +106,10 @@
 
 /* Hover Style for Links */
 .sidebar .niveau ul li a:hover {
-    background-color: #007bff;
+    background-color: #112331;
     color: white;
 }
 
-/* TODO: retirer la croix quand le slide est sorti + ajout de JS quand on clique or slide pour fermer') */
-.burger {
-    display: none; /* Hidden by default */
-    cursor: pointer;
-    padding: 1rem;
-    margin: 1rem;
-    position: fixed; /* Add position fixed */
-    z-index: 99;
-}
-
-.burger .line1, .burger .line2, .burger .line3 {
-    width: 30px;
-    height: 3px;
-    background-color: white;
-    margin: 5px;
-    transition: all 0.3s ease;
-}
-
-/* Transformations pour l'animation du burger en croix */
-.burger.active .line1 {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-.burger.active .line2 {
-    opacity: 0;
-}
-.burger.active .line3 {
-    transform: rotate(45deg) translate(-5px, -6px);
-}
 
 /* Adjustments for Larger Screens */
 @media (min-width: 768px) {
@@ -167,11 +135,6 @@
     .sidebar.active {
         width: 50%; /* Adjust sidebar width to display */
         padding: 2rem;
-    }
-
-    
-    .burger {
-        display: block; /* Show the burger button */
     }
 
     .card {
